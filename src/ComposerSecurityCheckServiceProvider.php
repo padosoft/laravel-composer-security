@@ -1,6 +1,7 @@
 <?php
-namespace Padosoft\ComposerSecurityCheck;
+namespace Padosoft\Composer;
 use Illuminate\Support\ServiceProvider;
+use GuzzleHttp\Client;
 class ComposerSecurityCheckServiceProvider extends ServiceProvider
 {
     /**
@@ -27,12 +28,12 @@ class ComposerSecurityCheckServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['command.composer-security-check'] = $this->app->share(
+        $this->app['command.composer-security:check'] = $this->app->share(
             function ($app) {
-                return new ComposerSecurityCheckCommand();
+                return new ComposerSecurityCheck(new client);
             }
         );
-        $this->commands('command.composer-security-check');
+        $this->commands('command.composer-security:check');
     }
     /**
      * Get the services provided by the provider.
@@ -41,6 +42,6 @@ class ComposerSecurityCheckServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['command.composer-security-check'];
+        return ['command.composer-security:check'];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Padosoft\Composer;
 
 use Illuminate\Console\Command;
 use Mail;

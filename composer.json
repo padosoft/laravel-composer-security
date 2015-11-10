@@ -18,11 +18,8 @@
         "barryvdh/laravel-ide-helper": "^2.1"
     },
     "autoload": {
-        "classmap": [
-            "database"
-        ],
         "psr-4": {
-            "App\\": "app/"
+            "Padosoft\\Composer\\": "src"
         }
     },
     "autoload-dev": {
