@@ -34,6 +34,7 @@ class ComposerSecurityCheckServiceProvider extends ServiceProvider
             }
         );
         $this->commands('command.composer-security:check');
+        $this->app->register('Padosoft\Composer\ComposerSecurityCheckServiceProvider');
     }
     /**
      * Get the services provided by the provider.
