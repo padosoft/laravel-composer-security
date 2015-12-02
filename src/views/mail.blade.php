@@ -16,7 +16,7 @@
             width: 100%;
             display: table;
             font-weight: 100;
-            font-family: 'Lato';
+            font-family: 'Lato','monospace';
         }
 
         .container {
@@ -28,10 +28,6 @@
         .content {
             text-align: center;
             display: inline-block;
-        }
-
-        .title {
-            font-size: 96px;
         }
 
         table {
@@ -49,7 +45,7 @@
 <body>
 <div class="container">
     <div class="content">
-        <table border="1" border-collapse="solid" style="width:100%">
+        <table border="1"  style="width:100%">
             <th>Name</th>
             <th>Version</th>
             <th>Advisor</th>

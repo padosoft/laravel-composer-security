@@ -4,18 +4,16 @@
     "keywords": ["composer", "security"],
     "license": "MIT",
     "type": "project",
+	"authors": [
+        {
+            "name": "padosoft",
+            "email": "helpdesk@padosoft.com"
+        }
+    ],
     "require": {
-        "php": ">=5.5.9",
-        "laravel/framework": "5.1.*",
         "guzzlehttp/guzzle": "~6.0",
-        "monolog/monolog": "1.11.*"
-    },
-    "require-dev": {
-        "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~4.0",
-        "phpspec/phpspec": "~2.1",
-        "barryvdh/laravel-ide-helper": "^2.1"
+        "illuminate/support": "~5.0",
+		"illuminate/console": "~5.0"
     },
     "autoload": {
         "psr-4": {
@@ -23,33 +21,8 @@
         }
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/TestCase.php"
-        ]
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "php artisan clear-compiled",
-            "php artisan ide-helper:generate -M -H",
-            "php artisan ide-helper:meta",
-            "php artisan optimize"
-        ],
-        "pre-update-cmd": [
-            "php artisan clear-compiled"
-        ],
-        "post-update-cmd": [
-            "php artisan ide-helper:generate -M -H",
-            "php artisan ide-helper:meta",
-            "php artisan optimize"
-        ],
-        "post-root-package-install": [
-            "php -r \"copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "php artisan key:generate"
-        ]
-    },
-    "config": {
-        "preferred-install": "dist"
+        "psr-4": {
+            "Padosoft\\Composer\\Tests": "tests"
+        }
     }
 }

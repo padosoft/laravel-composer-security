@@ -1,7 +1,9 @@
 <?php
 namespace Padosoft\Composer;
+
 use Illuminate\Support\ServiceProvider;
 use GuzzleHttp\Client;
+
 class ComposerSecurityCheckServiceProvider extends ServiceProvider
 {
     /**
