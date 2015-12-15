@@ -10,6 +10,8 @@ namespace Padosoft\Composer;
 
 use Config;
 use Validator;
+use Illuminate\Console\Command;
+use Mail;
 
 class MailHelper
 {
@@ -28,8 +30,9 @@ class MailHelper
     /**
      * @param $tuttoOk
      * @param $mail
+     * @param $vul
      */
-    public function sendEmail($tuttoOk, $mail)
+    public function sendEmail($tuttoOk, $mail, $vul)
     {
         $soggetto=Config::get('composer-security-check.mailSubjectSuccess');
 
@@ -48,7 +51,7 @@ class MailHelper
         }
         $this->command->line('Send email to <info>'.$mail.'</info>');
 
-        $vul=$this->tableVulnerabilities;
+        //$vul=$this->tableVulnerabilities;
 
 
         Mail::send(

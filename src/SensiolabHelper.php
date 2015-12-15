@@ -21,9 +21,9 @@ class SensiolabHelper
     protected $tableVulnerabilities = [];
 
     /**
-     * Create a new command instance.
-     *
+     * SensiolabHelper constructor.
      * @param Client $objguzzle
+     * @param Command $objcommand
      */
     public function __construct(Client $objguzzle, Command $objcommand)
     {
@@ -77,13 +77,13 @@ class SensiolabHelper
             $responseBody = $iResponse->getBody()->getContents();
             //$this->info(substr($responseBody,0,200));
             $response = json_decode($responseBody, true);
-        } catch (ClientException $e) {
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
             $this->command->error("ClientException!\nMessage: ".$e->getMessage());
             $colorTag = $this->getColorTagForStatusCode($e->getResponse()->getStatusCode());
             $this->command->line("HTTP StatusCode: <{$colorTag}>".$e->getResponse()->getStatusCode()."<{$colorTag}>");
             $this->printResponse($e->getResponse());
             $this->printRequest($e->getRequest());
-        } catch (RequestException $e) {
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
             $this->command->error("RequestException!\nMessage: ".$e->getMessage());
             $this->printRequest($e->getRequest());
             if ($e->hasResponse()) {
@@ -92,7 +92,6 @@ class SensiolabHelper
                 $this->printResponse($e->getResponse());
             }
         }
-
         return $response;
     }
 
@@ -107,7 +106,7 @@ class SensiolabHelper
             'version' => $vulnerability['version'],
             'advisories' => array_values($vulnerability['advisories'])
         ];
-
+        unset($this->tableVulnerabilities);
         foreach ($data['advisories'] as $key2 => $advisory) {
             $data2 = [
                 'title' => $advisory['title'],
@@ -122,8 +121,10 @@ class SensiolabHelper
             ];
 
             $this->addVerboseLog($data['name'] . " " . $data['version'] . " " . $data2["title"], true);
-            $this->tableVulnerabilities[] = $dataTable;
+            $this->tableVulnerabilities[] =$dataTable;
         }
+
+        //dd($this->tableVulnerabilities);
         return $this->tableVulnerabilities;
     }
 
@@ -146,7 +147,7 @@ class SensiolabHelper
     /**
      * @param Response $response
      */
-    private function printResponse(Response $response)
+    private function printResponse(\Psr\Http\Message\ResponseInterface $response)
     {
         $this->command->info('RESPONSE:');
         $headers = '';
@@ -160,7 +161,7 @@ class SensiolabHelper
     /**
      * @param Request $request
      */
-    private function printRequest(Request $request)
+    private function printRequest(\Psr\Http\Message\RequestInterface $request)
     {
         $this->command->info('REQUEST:');
         $headers='';

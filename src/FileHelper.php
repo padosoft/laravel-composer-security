@@ -10,7 +10,8 @@
 
 namespace Padosoft\Composer;
 
-use File;
+use \Illuminate\Foundation;
+use \Illuminate\Support\Facades\File;
 
 class FileHelper
 {

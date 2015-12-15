@@ -1,0 +1,14 @@
+path: Y:\laravel-packages\www\laravel\5.1.x\packages\padosoft\composer\tests.\nCheck composer.lock files...
+Find 1 composer.lock files.
+Analizing 1 di 1: Y:\laravel-packages\www\laravel\5.1.x\packages\padosoft\composer\tests/composer.lock ...
+Trovate 2 vulnerabilita' in Y:\laravel-packages\www\laravel\5.1.x\packages\padosoft\composer\tests/composer.lock
++--------------------------------------------------------------------------------------+---------+----------------------------------------+
+| name                                                                                 | version | title                                  |
++--------------------------------------------------------------------------------------+---------+----------------------------------------+
+| Y:\laravel-packages\www\laravel\5.1.x\packages\padosoft\composer\tests/composer.lock |         |                                        |
+| symfony/http-foundation                                                              | v2.4.10 | Unsafe methods in the Request class    |
+| symfony/http-kernel                                                                  | v2.4.10 | CVE-2015-4050: ESI unauthorized access |
+| symfony/http-kernel                                                                  | v2.4.10 | Esi Code Injection                     |
++--------------------------------------------------------------------------------------+---------+----------------------------------------+
+Send email to alessandro.manneschi@gmail.com
+email sent.

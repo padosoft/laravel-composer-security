@@ -6,11 +6,12 @@
  * Time: 16:39
  */
 
-namespace Padosoft\Composer;
+namespace Padosoft\Composer\Test;
 
 use \Illuminate\Support\Facades\File;
+use Padosoft\Composer\FileHelper;
 
-class FileHelperTest extends \TestCase
+class FileHelperTest extends \TestBase
 {
     protected $fileHelper;
 
