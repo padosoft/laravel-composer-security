@@ -1,0 +1,47 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Alessandro
+ * Date: 07/12/2015
+ * Time: 16:39
+ */
+
+namespace Padosoft\Composer;
+
+use \Illuminate\Support\Facades\File;
+
+class FileHelperTest extends \TestCase
+{
+    protected $fileHelper;
+
+    public function setUp()
+    {
+        $this->fileHelper = new FileHelper();
+        parent::setUp();
+    }
+
+    /**
+     * @test
+     * @dataProvider provider
+     * @param $path
+     * @param $fileName
+     * @param $lockFile
+     */
+    public function testFindFiles($path,$fileName,$lockFile)
+    {
+        //File::shouldReceive('isDirectory')->andReturn(true);
+        //File::shouldReceive('glob')->andReturn('/pippo/composer.lock');
+        //dd($this->fileHelper->findFiles($path,$fileName));
+        $this->assertEquals($this->fileHelper->findFiles($path,$fileName)[0],$lockFile);
+        //$this->assertEquals($this->fileHelper->findFiles('/pippo','composer.lock'),'/pippo/composer.lock');
+    }
+
+    public function provider()
+    {
+        return array(
+            array('', 'composer.lock', 'Y:\laravel-packages\www\laravel\5.1.x/composer.lock'),
+            array('Y:\satis-admin\www', 'composer.lock', 'Y:\satis-admin\www/composer.lock')
+
+        );
+    }
+}
