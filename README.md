@@ -1,4 +1,4 @@
-# PROGETTO TESSERA SANITARIA
+# PROGETTO LARAVEL COMPOSER SECURITY
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -9,13 +9,13 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 [![SensioLabsInsight][ico-sensiolab]][link-sensiolab]
 
-Il package permette la creazione di file XML delle prestazioni mediche per il servizio nazionale sanità secondo il formato XML della tessera sanitaria definito nel DM 31/07/2015.
-Per maggiori info si veda il Portale della Tessera Sanitaria: http://sistemats1.sanita.finanze.it/wps/portal/
+Il package un comando Artisan Laravel che consente di testare la sicurezza dei packages installati con il composer.lock.
+
 
 Table of Contents
 =================
 
-  * [PROGETTO TESSERA SANITARIA](#progetto-tessera-sanitaria)
+  * [PROGETTO LARAVEL COMPOSER SECURITY](#progetto-laravel-composer-security)
   * [Table of Contents](#table-of-contents)
   * [PREREQUISITI](#prerequisiti)
     * [INSTALLAZIONE  OPENSSL](#installazione--openssl)
@@ -101,23 +101,20 @@ Rinominare il file **.env.example** in **.env**
 aprirlo con un editor di testo e impostare le variabili:
 Esempio Windows:
 
-    TMP_PATH = "c:/xampp/htdocs/tessera-sanitaria/tests/tmp/";
-    CERT_FILE = "c:/xampp/htdocs/tessera-sanitaria/tests/certificates/test.crt";
+    TMP_PATH = "c:/xampp/htdocs/laravel-composer-security/tests/tmp/";
+    CERT_FILE = "c:/xampp/htdocs/laravel-composer-security/tests/certificates/test.crt";
     OPENSSL_EXE_PATH = "c:/OpenSSL-Win32/bin/";
 
 Esempio Linux:
 
-    TMP_PATH = "/var/www/html/tessera-sanitaria/tests/tmp/";
-    CERT_FILE = "/var/www/html/tessera-sanitaria/tests/certificates/test.crt";
+    TMP_PATH = "/var/www/html/laravel-composer-security/tests/tmp/";
+    CERT_FILE = "/var/www/html/laravel-composer-security/tests/certificates/test.crt";
     OPENSSL_EXE_PATH = "";
 
 ### Permission folder
 Rendere queste directory scrivibili da php:
 ``` bash
-chmod -R 777 /var/www/html/padosoft/tessera-sanitaria/tests/tmp/
-chmod -R 777 /var/www/html/padosoft/tessera-sanitaria/tests/output/
-chmod -R 777 /var/www/html/padosoft/tessera-sanitaria/tests/log/
-chmod -R 777 /var/www/html/padosoft/tessera-sanitaria/vendor/luminous/luminous/cache/
+
 ```
 
 # CHANGE LOG
@@ -128,73 +125,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## ESEMPIO BASE
 
-L'utilizzo base del pacchetto, al netto del caricamento delle dipendenze, prevede l'istanza della classe per il tracciato, il passaggio dei dati necessari alla creazione dell'XML e il successivo recupero del codice in una variabile di tipo stringa:
-``` php
-// Istanzia la classe per il tracciato
-$objTracciato = new Tracciato($objValidateHelper);
 
-// Crea XML
-$rispostaTracciato = $objTracciato->doTracciato($codiceRegione, $codiceAsl, $codiceSSA, $cfProprietario, $pIva, $arrSpesa, $arrVociSpesa);
-    
-// Recupera l'XML creato
-$strXML = $objTracciato->getXml();
-```
-Successivamente, la stringa ricavata potrà essere usata per:
-
-- Stampare direttamente il codice a video
-- Creazione file XML
-- Creazione file XML compresso
-
-tramite vari metodi analizzati nel successivo paragrafo "Output".
-
-## OUTPUT
-
-La stringa XML recuperata dal metodo getXml() della classe Tracciato può essere utilizzata nei seguenti modi:
-
-### Output a video
-
-I metodi della classe PrintHelper stampano a video il codice XML generato.
-Servendosi della libreria Luminous (https://github.com/markwatkinson/luminous) , il codice viene formattato tramite un'interfaccia chiara ed esteticamente gradevole.
-``` php
-// Stampa header template html
-PrintHelper::printHtmlHeader();
-    
-// Recupera l'esito e gli eventuali errori
-PrintHelper::printError($objTracciato, $logger, $objValidateHelper);
-    
-// Stampa l'XML formattato
-PrintHelper::printXML($strXML);
-    
-// Stampa comandi
-PrintHelper::printButton();
-    
-// Stampa html footer
-PrintHelper::printHtmlFooter();
-```
-### Creazione File
-
-La classe IOHelper permette di trasformare la stringa XML nel corrispondente file, sia in versione estesa che compressa. I due metodi che si occupano di queste operazioni sono i seguenti: 
-``` php
-// Salva XML su file
-IOHelper::outputFile($strXML, $pathOutput, $basePath);
-
-// Crea lo zip al volo e salva su $destinationZip
-IOHelper::zipFileOntheFly($pathOutput, $destinationZip, $strXML);
-```
-## VALIDAZIONE
-
-La validazione dei dati passati al metodo doTracciato avviene in modo trasparente per l'utente, tramite la classe ValidateHelper richiamata dal metodo stesso. I parametri di validazione si basano sul documento ufficiale fornito dal ministero della sanità:
-http://sistemats1.sanita.finanze.it/wps/wcm/connect/487b0bba-6a65-42f9-8b43-2fb907fe7e91/730+Schema+dati+spesa+sanitaria+(28_09_2015)_v2.pdf?MOD=AJPERES&CACHEID=487b0bba-6a65-42f9-8b43-2fb907fe7e91
-
-# ESEMPIO COMPLETO
-
-Un esempio esaustivo di tutte le funzionalità summenzionate si trova in /tests/index.php , che carica anche tutte le dipendenze necessarie.
-Tutti i precedenti esempi di codice sono stati ricavati da questo file. 
-
-## Screenshot esempio
-
-Uno screenshot di esempio si trova nella cartella resources/img
-![demo tessera-sanitaria](https://raw.githubusercontent.com/padosoft/tessera-sanitaria/master/resources/img/tessera_sanitaria_tests.png)
 
 # Contributing
 
@@ -207,7 +138,6 @@ If you discover any security related issues, please email :author_email instead 
 # Credits
 
 - [Lorenzo Padovani](https://github.com/lopadova)
-- Raffaele Masi
 - [All contributors](https://github.com/thephpleague/skeleton/contributors)
 
 # About Padosoft
@@ -217,22 +147,22 @@ Padosoft is a software house based in Florence, Italy. Specialized in E-commerce
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/padosoft/tessera-sanitaria.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/padosoft/laravel-composer-security.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/padosoft/tessera-sanitaria/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/padosoft/tessera-sanitaria.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/padosoft/tessera-sanitaria.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/padosoft/tessera-sanitaria.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/padosoft/laravel-composer-security/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/padosoft/laravel-composer-security.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/padosoft/laravel-composer-security.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/padosoft/laravel-composer-security.svg?style=flat-square
 [ico-sensiolab]: https://insight.sensiolabs.com/projects/a79cb441-a1e0-43f7-a343-d1598847ccfc/small.png
-[ico-hhvm-status]: http://hhvm.h4cc.de/badge/padosoft/tessera-sanitaria.svg?style=flat
+[ico-hhvm-status]: http://hhvm.h4cc.de/badge/padosoft/laravel-composer-security.svg?style=flat
 
-[link-packagist]: https://packagist.org/packages/padosoft/tessera-sanitaria
-[link-travis]: https://travis-ci.org/padosoft/tessera-sanitaria
-[link-scrutinizer]: https://scrutinizer-ci.com/g/padosoft/tessera-sanitaria/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/padosoft/tessera-sanitaria
-[link-downloads]: https://packagist.org/packages/padosoft/tessera-sanitaria
+[link-packagist]: https://packagist.org/packages/padosoft/laravel-composer-security
+[link-travis]: https://travis-ci.org/padosoft/laravel-composer-security
+[link-scrutinizer]: https://scrutinizer-ci.com/g/padosoft/laravel-composer-security/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/padosoft/laravel-composer-security
+[link-downloads]: https://packagist.org/packages/padosoft/laravel-composer-security
 [link-sensiolab]: https://insight.sensiolabs.com/projects/a79cb441-a1e0-43f7-a343-d1598847ccfc
-[link-hhvm-status]: http://hhvm.h4cc.de/package/padosoft/tessera-sanitaria
+[link-hhvm-status]: http://hhvm.h4cc.de/package/padosoft/laravel-composer-security
 [link-author]: https://github.com/lopadova
 [link-contributors]: ../../contributors
 
