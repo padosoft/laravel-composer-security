@@ -79,15 +79,15 @@ class SensiolabHelper
             $this->command->error("ClientException!\nMessage: ".$e->getMessage());
             $colorTag = $this->getColorTagForStatusCode($e->getResponse()->getStatusCode());
             $this->command->line("HTTP StatusCode: <{$colorTag}>".$e->getResponse()->getStatusCode()."<{$colorTag}>");
-            $this->printResponse($e->getResponse());
-            $this->printRequest($e->getRequest());
+            $this->printMessage($e->getResponse());
+            $this->printMessage($e->getRequest());
         } catch (\GuzzleHttp\Exception\RequestException $e) {
             $this->command->error("RequestException!\nMessage: ".$e->getMessage());
-            $this->printRequest($e->getRequest());
+            $this->printMessage($e->getRequest());
             if ($e->hasResponse()) {
                 $colorTag = $this->getColorTagForStatusCode($e->getResponse()->getStatusCode());
                 $this->command->line("HTTP StatusCode: <{$colorTag}>".$e->getResponse()->getStatusCode()."<{$colorTag}>");
-                $this->printResponse($e->getResponse());
+                $this->printMessage($e->getResponse());
             }
         }
         return $response;
@@ -142,32 +142,28 @@ class SensiolabHelper
     }
 
     /**
-     * @param Response $response
+     * @param \Psr\Http\Message\MessageInterface $message
      */
-    private function printResponse(\Psr\Http\Message\ResponseInterface $response)
+    private function printMessage(\Psr\Http\Message\MessageInterface $message)
     {
-        $this->command->info('RESPONSE:');
-        $headers = '';
-        foreach ($response->getHeaders() as $name => $values) {
+        if(is_a($message,'\Psr\Http\Message\RequestInterface')) {
+            $type='REQUEST';
+        } else if(is_a($message,'\Psr\Http\Message\ResponseInterface')) {
+            $type='RESPONSE';
+        }
+        $this->command->info("$type:");
+        $headers='';
+        foreach ($message->getHeaders() as $name => $values) {
             $headers .= $name . ': ' . implode(', ', $values) . "\r\n";
         }
         $this->command->comment($headers);
-        $this->command->comment($response->getBody()->getContents());
+        if($type=='REQUEST') {
+            $this->command->comment($message->getBody());
+        } else if($type=='RESPONSE') {
+            $this->command->comment($message->getBody()->getContents());
+        }
     }
 
-    /**
-     * @param Request $request
-     */
-    private function printRequest(\Psr\Http\Message\RequestInterface $request)
-    {
-        $this->command->info('REQUEST:');
-        $headers='';
-        foreach ($request->getHeaders() as $name => $values) {
-            $headers .= $name . ': ' . implode(', ', $values) . "\r\n";
-        }
-        $this->command->comment($headers);
-        $this->command->comment($request->getBody());
-    }
 
     /**
      * Get the color tag for the given status code.

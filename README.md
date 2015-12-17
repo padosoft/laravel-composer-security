@@ -153,7 +153,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/padosoft/laravel-composer-security.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/padosoft/laravel-composer-security.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/padosoft/laravel-composer-security.svg?style=flat-square
-[ico-sensiolab]: https://insight.sensiolabs.com/projects/a79cb441-a1e0-43f7-a343-d1598847ccfc/small.png
+[ico-sensiolab]: https://insight.sensiolabs.com/projects/80fa0430-55ff-4079-a34e-d189a9d21d5e/small.png
 [ico-hhvm-status]: http://hhvm.h4cc.de/badge/padosoft/laravel-composer-security.svg?style=flat
 
 [link-packagist]: https://packagist.org/packages/padosoft/laravel-composer-security
@@ -161,7 +161,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-scrutinizer]: https://scrutinizer-ci.com/g/padosoft/laravel-composer-security/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/padosoft/laravel-composer-security
 [link-downloads]: https://packagist.org/packages/padosoft/laravel-composer-security
-[link-sensiolab]: https://insight.sensiolabs.com/projects/a79cb441-a1e0-43f7-a343-d1598847ccfc
+[link-sensiolab]: https://insight.sensiolabs.com/projects/80fa0430-55ff-4079-a34e-d189a9d21d5e
 [link-hhvm-status]: http://hhvm.h4cc.de/package/padosoft/laravel-composer-security
 [link-author]: https://github.com/lopadova
 [link-contributors]: ../../contributors
