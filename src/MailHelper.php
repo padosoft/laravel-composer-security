@@ -48,8 +48,6 @@ class MailHelper
             $soggetto=Config::get('composer-security-check.mailSubjetcAlarm');
         }
 
-        //$mail = $this->option('mail');
-
         $validator = Validator::make(['email' => $mail], [
             'email' => 'required|email',
         ]);
@@ -58,9 +56,6 @@ class MailHelper
             return;
         }
         $this->command->line('Send email to <info>'.$mail.'</info>');
-
-        //$vul=$this->tableVulnerabilities;
-
 
         Mail::send(
             Config::get('composer-security-check.mailViewName'),
