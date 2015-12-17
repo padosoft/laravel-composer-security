@@ -70,8 +70,8 @@ class SensiolabHelperTest extends \TestBase
     public function testGetSensiolabVulnerabilties()
     {
         $sensiolabHelper = new SensiolabHelper($this->guzzle,$this->mockCommand);
-        $response = $sensiolabHelper->getSensiolabVulnerabilties('composer.lock');
-        $this->assertEquals(File::get('risposta.json'), json_encode($response));
+        $response = $sensiolabHelper->getSensiolabVulnerabilties(__DIR__.'/composer.lock');
+        $this->assertEquals(File::get(__DIR__.'/risposta.json'), json_encode($response));
 
 
     }
@@ -88,7 +88,7 @@ class SensiolabHelperTest extends \TestBase
         $mockGuzzleClientException->shouldReceive('request')->once()->andThrow($mockClientException);
 
         $sensiolabHelperClientException = new SensiolabHelper($mockGuzzleClientException,$this->mockCommand);
-        $response = $sensiolabHelperClientException->getSensiolabVulnerabilties('composer.lock');
+        $response = $sensiolabHelperClientException->getSensiolabVulnerabilties(__DIR__.'/composer.lock');
         $this->assertEquals(null,$response);
 
     }
@@ -105,7 +105,7 @@ class SensiolabHelperTest extends \TestBase
         $mockGuzzleRequestException->shouldReceive('request')->once()->andThrow($mockRequestException);
 
         $sensiolabHelperRequestException = new SensiolabHelper($mockGuzzleRequestException,$this->mockCommand);
-        $response = $sensiolabHelperRequestException->getSensiolabVulnerabilties('composer.lock');
+        $response = $sensiolabHelperRequestException->getSensiolabVulnerabilties(__DIR__.'/composer.lock');
         $this->assertEquals(null,$response);
     }
 
@@ -113,7 +113,7 @@ class SensiolabHelperTest extends \TestBase
      */
     public function testParseVulnerability()
     {
-        $response = json_decode(File::get('risposta.json'),true);
+        $response = json_decode(File::get(__DIR__.'/risposta.json'),true);
         $tableVulnerabilities = [];
         $sensiolabHelper = new SensiolabHelper($this->guzzle,$this->mockCommand);
         foreach ($response as $key => $vulnerability) {
@@ -122,7 +122,7 @@ class SensiolabHelperTest extends \TestBase
                 $tableVulnerabilities[]=$vul;
             }
         }
-        $this->assertEquals(File::get('parseVulnerability.json'), json_encode($tableVulnerabilities));
+        $this->assertEquals(File::get(__DIR__.'/parseVulnerability.json'), json_encode($tableVulnerabilities));
 
     }
 
@@ -143,8 +143,8 @@ class SensiolabHelperTest extends \TestBase
         $client = new Client(['handler' => $handler]);
 
         $sensio = new SensiolabHelper($client,$this->mockCommand);
-        $this->assertEquals(null,$sensio->getSensiolabVulnerabilties('composer.lock'));
-        $this->assertEquals(null,$sensio->getSensiolabVulnerabilties('composer.lock'));
+        $this->assertEquals(null,$sensio->getSensiolabVulnerabilties(__DIR__.'/composer.lock'));
+        $this->assertEquals(null,$sensio->getSensiolabVulnerabilties(__DIR__.'/composer.lock'));
 
     }
 

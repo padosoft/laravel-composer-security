@@ -23,10 +23,10 @@ class FileHelperTest extends \TestBase
 
     /**
      * @test
-     * @dataProvider provider
      * @param $path
      * @param $fileName
      * @param $lockFile
+     * @dataProvider provider
      */
     public function testFindFiles($path,$fileName,$lockFile)
     {

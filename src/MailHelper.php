@@ -19,6 +19,14 @@ class MailHelper
     protected $command;
 
     /**
+     *
+     */
+    public function setUp()
+    {
+        parent::setUp();
+    }
+
+    /**
      * MailHelper constructor.
      * @param Command $objcommand
      */

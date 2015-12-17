@@ -125,6 +125,16 @@ EOF;
             $numLock++;
         }
 
+        $esito=Config::get('composer-security-check.mailSubjectSuccess');
+
+        if (!$tuttoOk) {
+            $esito=Config::get('composer-security-check.mailSubjetcAlarm');
+            $this->error($esito);
+        }
+        else {
+            $this->line($esito);
+        }
+
         //print to console
         $this->table($this->headersTableConsole, $this->tableVulnerabilities);
 

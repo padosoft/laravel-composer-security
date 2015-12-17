@@ -20,8 +20,11 @@ class ComposerSecurityCheckTest extends TestBase
     /** @test */
     public function testHardWork()
     {
-        Artisan::call('composer-security:check',['path'=>__DIR__,'--mail'=>'alessandro.manneschi@gmail.com']);
+        Artisan::call('composer-security:check',['path'=>__DIR__,'--mail'=>'helpdesk@padosoft.com']);
         $output = Artisan::output();
+        //dd($output);
+        //File::put(__DIR__.'/artisan_output',$output);
+
         $this->assertEquals(File::get(__DIR__.'/artisan_output'),$output);
     }
 
