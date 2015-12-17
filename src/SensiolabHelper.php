@@ -45,7 +45,6 @@ class SensiolabHelper
         $this->addVerboseLog('Send request to sensiolab: <info>'.$fileLock.'</info>');
 
         $debug = false;//set to true to log into console output
-        //$debug = fopen("guzzle.log",'w+'); //to log into file
         $headers = [
             //OPTIONS
             'allow_redirects' => [
@@ -75,7 +74,6 @@ class SensiolabHelper
         try {
             $iResponse = $this->guzzle->request('POST', 'https://security.sensiolabs.org/check_lock', $headers);
             $responseBody = $iResponse->getBody()->getContents();
-            //$this->info(substr($responseBody,0,200));
             $response = json_decode($responseBody, true);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $this->command->error("ClientException!\nMessage: ".$e->getMessage());
@@ -124,7 +122,6 @@ class SensiolabHelper
             $this->tableVulnerabilities[] =$dataTable;
         }
 
-        //dd($this->tableVulnerabilities);
         return $this->tableVulnerabilities;
     }
 
