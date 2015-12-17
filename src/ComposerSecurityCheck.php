@@ -88,7 +88,7 @@ EOF;
      */
     private function hardWork($argument,$option)
     {
-        //throw new Exception();
+
         $this->line('path: <info>'.$argument['path'].'</info>.\nCheck composer.lock files...');
         $lockFiles = $this->findFilesComposerLock($argument['path']);
         $this->line('Find <info>'.count($lockFiles).'</info> composer.lock files.');
