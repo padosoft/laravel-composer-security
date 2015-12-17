@@ -146,6 +146,7 @@ class SensiolabHelper
      */
     private function printMessage(\Psr\Http\Message\MessageInterface $message)
     {
+        $type='';
         if(is_a($message,'\Psr\Http\Message\RequestInterface')) {
             $type='REQUEST';
         } else if(is_a($message,'\Psr\Http\Message\ResponseInterface')) {
