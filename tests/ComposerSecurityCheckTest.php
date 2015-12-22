@@ -12,6 +12,7 @@ use GuzzleHttp\Client;
 use Padosoft\Composer\ComposerSecurityCheck;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
+use Padosoft\Composer\Test\TestBase;
 
 class ComposerSecurityCheckTest extends TestBase
 {

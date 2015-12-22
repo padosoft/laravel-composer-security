@@ -17,12 +17,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Padosoft\\Composer\\": "src"
+            "Padosoft\\Composer\\": "src",
+            "Padosoft\\Composer\\Test": "tests"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Padosoft\\Composer\\Test": "tests"
+
         }
     }
 }
