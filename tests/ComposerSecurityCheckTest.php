@@ -9,7 +9,6 @@
 namespace Padosoft\Composer\Test;
 
 use GuzzleHttp\Client;
-use \TestBase;
 use Padosoft\Composer\ComposerSecurityCheck;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
