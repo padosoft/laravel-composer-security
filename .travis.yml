@@ -9,6 +9,7 @@ before_install:
   - composer create-project laravel/laravel:5.1
   - cd ./laravel
   - composer config repositories.alevento git https://github.com/alevento/composer
+  - sed -i 's/"psr-4": {/"psr-4": { "Padosoft\\\\Composer\\\\Test\\\\": "vendor\/padosoft\/composer\/tests\/",/g' /var/www/html/laravel/composer.json
   - composer require padosoft/composer dev-master
   - composer update
 
