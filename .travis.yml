@@ -10,7 +10,7 @@ before_install:
   - composer create-project laravel/laravel
   - cd ./laravel
   - composer config repositories.alevento git https://github.com/alevento/laravel-composer-security
-  - composer require padosoft/laravel-composer-security dev-master
+  - composer require padosoft/composer dev-master
   - composer update
 
 script:
