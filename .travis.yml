@@ -13,7 +13,6 @@ before_install:
   - composer update
 
 script:
-  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
-  - vendor/bin/phpunit --configuration ./vendor/padosoft/composer/phpunit.xml.dist --testsuite Package
+  - vendor/bin/phpunit --configuration ./vendor/padosoft/composer/phpunit.xml.dist --testsuite Package --coverage-text --coverage-clover=coverage.clover
 
 
