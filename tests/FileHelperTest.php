@@ -11,7 +11,7 @@ namespace Padosoft\Composer\Test;
 use \Illuminate\Support\Facades\File;
 use Padosoft\Composer\FileHelper;
 
-class FileHelperTest extends \TestBase
+class FileHelperTest extends TestBase
 {
     protected $fileHelper;
 
