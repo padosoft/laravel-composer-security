@@ -6,14 +6,14 @@ php:
 
 before_install:
   - composer self-update
-  - composer create-project laravel/laravel
+  - composer create-project laravel/laravel:5.1
   - cd ./laravel
-  - composer config repositories.alevento git https://github.com/alevento/laravel-composer-security
+  - composer config repositories.alevento git https://github.com/alevento/composer
   - composer require padosoft/composer dev-master
   - composer update
 
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
-  - phpunit --configuration ./vendor/padosoft/laravel-composer-security/phpunit.xml.dist --testsuite Package
+  - phpunit --configuration ./vendor/padosoft/composer/phpunit.xml.dist --testsuite Package
 
 
