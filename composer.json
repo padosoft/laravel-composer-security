@@ -18,7 +18,7 @@
     "autoload": {
         "psr-4": {
             "Padosoft\\Composer\\": "src",
-            "Padosoft\\Composer\\Test": "tests"
+            "Padosoft\\Composer\\Test\\": "tests"
         }
     },
     "autoload-dev": {
