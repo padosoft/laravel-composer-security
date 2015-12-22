@@ -27,3 +27,11 @@ script:
 
 after_script:
   - if [[ $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != '7.0' ]]; then php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover; fi
+
+before_install:
+  - composer self-update
+  - composer create-project laravel/laravel
+  - cd ./laravel
+  - composer config repositories.alevento git https://github.com/alevento/laravel-composer-security
+  - composer require padosoft/laravel-composer-security dev-master
+  - php artisan vendor:publish
