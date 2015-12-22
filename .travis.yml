@@ -16,6 +16,6 @@ before_install:
 
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
-  - phpunit --configuration ./vendor/padosoft/laravel-composer-security/phpunit.xml --testsuite Package
+  - phpunit --configuration ./vendor/padosoft/laravel-composer-security/phpunit.xml.dist --testsuite Package
 
 
