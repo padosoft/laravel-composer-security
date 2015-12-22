@@ -12,7 +12,6 @@ before_install:
   - composer config repositories.alevento git https://github.com/alevento/laravel-composer-security
   - composer require padosoft/laravel-composer-security dev-master
   - composer update
-  - php artisan vendor:publish
 
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
