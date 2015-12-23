@@ -14,7 +14,7 @@ before_install:
   - composer update
   - rm ./config/app.php
   - cp ./vendor/padosoft/composer/tests/app.php ./config
-  - rm ./.env.dist
+  - rm ./.env
   - cp ./vendor/padosoft/composer/tests/.env.dist ./.env
   - php artisan vendor:publish
   - gem install mailcatcher
