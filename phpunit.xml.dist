@@ -12,7 +12,6 @@
     <testsuites>
         <testsuite name="Package">
             <directory suffix=".php">./tests</directory>
-            <exclude><file>./tests/MailHelperTest.php</file></exclude>
             <exclude><file>./tests/TestBase.php</file></exclude>
         </testsuite>
     </testsuites>
