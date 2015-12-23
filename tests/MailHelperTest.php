@@ -15,7 +15,7 @@ use \Mockery as m;
 use Illuminate\Support\Facades\Config;
 
 
-class MailHelperTest extends \MailTestCase
+class MailHelperTest extends MailTestCase
 {
 
     protected $mockCommand;
