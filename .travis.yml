@@ -10,7 +10,7 @@ before_install:
   - cd ./laravel
   - composer config repositories.alevento git https://github.com/alevento/composer
   - composer require padosoft/composer dev-master
-  - /bin/bash ./vendor/padosoft/composer/tests/sedCommand
+  - ./vendor/padosoft/composer/tests/sedCommand.sh
   - composer update
 
 script:
