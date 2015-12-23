@@ -20,13 +20,13 @@ class ComposerSecurityCheckServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/config/composer-security-check.php' => config_path('composer-security-check.php'),
+            __DIR__ . '/config/composer-security-check.php' => config_path('composer-security-check.php'),
         ], 'config');
 
-        $this->loadViewsFrom(__DIR__.'/views', 'composer-security-check');
+        $this->loadViewsFrom(__DIR__ . '/views', 'composer-security-check');
 
         $this->publishes([
-            __DIR__.'/views' => base_path('resources/views/padosoft/composer-security-check'),
+            __DIR__ . '/views' => base_path('resources/views/padosoft/composer-security-check'),
         ]);
     }
     /**

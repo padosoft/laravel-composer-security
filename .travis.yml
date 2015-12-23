@@ -14,7 +14,10 @@ before_install:
   - composer update
   - rm ./config/app.php
   - cp ./vendor/padosoft/composer/tests/app.php ./config
+  - cp ./vendor/padosoft/composer/tests/.env ./
   - php artisan vendor:publish
+  - gem install mailcatcher
+  - mailcatcher
 
 script:
   - vendor/bin/phpunit --configuration ./vendor/padosoft/composer/phpunit.xml.dist --testsuite Package --coverage-text --coverage-clover=coverage.clover
