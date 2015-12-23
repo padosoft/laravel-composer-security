@@ -12,6 +12,9 @@ before_install:
   - composer require padosoft/composer dev-master
   - ./vendor/padosoft/composer/tests/sedCommand.sh
   - composer update
+  - rm ./config/app.php
+  - cp ./vendor/padosoft/composer/tests/app.php ./config
+  - php artisan vendor:publish
 
 script:
   - vendor/bin/phpunit --configuration ./vendor/padosoft/composer/phpunit.xml.dist --testsuite Package --coverage-text --coverage-clover=coverage.clover
