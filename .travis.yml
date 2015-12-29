@@ -13,7 +13,6 @@ before_install:
   - cd ./laravel
   - composer config repositories.alevento git https://github.com/alevento/composer
   - composer require padosoft/composer dev-master
-  - composer require guzzlehttp/guzzle ^6.1
   - ./vendor/padosoft/composer/tests/sedCommand.sh
   - composer update
   - rm ./config/app.php
