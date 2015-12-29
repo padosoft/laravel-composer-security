@@ -13,6 +13,7 @@
         <testsuite name="Package">
             <directory suffix=".php">./tests</directory>
             <exclude><file>./tests/TestBase.php</file></exclude>
+            <exclude><file>./tests/MailTestCase.php</file></exclude>
         </testsuite>
     </testsuites>
     <testsuite name="Mail">
