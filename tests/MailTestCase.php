@@ -20,7 +20,7 @@ class MailTestCase extends \TestCase
      */
     public function setUp()
     {
-        $this->mailcatcher = new \GuzzleHttp\Client(['base_uri' => env(MAIL_HOST,'127.0.0.1').':1080']);
+        $this->mailcatcher = new \GuzzleHttp\Client(['base_uri' => env('MAIL_HOST','127.0.0.1').':1080']);
         parent::setUp();
     }
 
