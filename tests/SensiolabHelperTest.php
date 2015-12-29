@@ -11,16 +11,16 @@ namespace Padosoft\Composer\Test;
 use Illuminate\Console\Command;
 
 use \Mockery as m;
-use Illuminate\Support\Facades\File;
-use Padosoft\Composer\SensiolabHelper;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception;
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\HandlerStack;
+use \Illuminate\Support\Facades\File;
+use \Padosoft\Composer\SensiolabHelper;
+use \GuzzleHttp\Client;
+use \GuzzleHttp\Exception;
+use \GuzzleHttp\Exception\ClientException;
+use \GuzzleHttp\Exception\RequestException;
+use \GuzzleHttp\Handler\MockHandler;
+use \GuzzleHttp\Psr7\Response;
+use \GuzzleHttp\Psr7\Request;
+use \GuzzleHttp\HandlerStack;
 
 class SensiolabHelperTest extends TestBase
 {
@@ -84,7 +84,7 @@ class SensiolabHelperTest extends TestBase
         $mockClientException->shouldReceive('getResponse')->times(3)->andReturn($this->mockResponse);
         $mockClientException->shouldReceive('getRequest')->once()->andReturn($this->mockRequest);
 
-        $mockGuzzleClientException = m::mock('GuzzleHttp\Client');
+        $mockGuzzleClientException = m::mock('\GuzzleHttp\Client');
         $mockGuzzleClientException->shouldReceive('request')->once()->andThrow($mockClientException);
 
         $sensiolabHelperClientException = new SensiolabHelper($mockGuzzleClientException,$this->mockCommand);
@@ -101,7 +101,7 @@ class SensiolabHelperTest extends TestBase
         $mockRequestException->shouldReceive('getRequest')->once()->andReturn($this->mockRequest);
         $mockRequestException->shouldReceive('hasResponse')->once()->andReturn(true);
 
-        $mockGuzzleRequestException = m::mock('GuzzleHttp\Client');
+        $mockGuzzleRequestException = m::mock('\GuzzleHttp\Client');
         $mockGuzzleRequestException->shouldReceive('request')->once()->andThrow($mockRequestException);
 
         $sensiolabHelperRequestException = new SensiolabHelper($mockGuzzleRequestException,$this->mockCommand);
