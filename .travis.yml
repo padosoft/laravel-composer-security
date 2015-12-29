@@ -12,7 +12,6 @@ before_install:
   - cd ./laravel
   - composer config repositories.alevento git https://github.com/alevento/composer
   - composer require padosoft/composer dev-master
-  - composer require scrutinizer/ocular ~1.1
   - ./vendor/padosoft/composer/tests/sedCommand.sh
   - composer update
   - rm ./config/app.php
@@ -28,4 +27,6 @@ script:
 
 
 after_script:
-  - if [[ $TRAVIS_PHP_VERSION != '7.0' ]]; then php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover; fi
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - if [[ $TRAVIS_PHP_VERSION != '7.0' ]]; then php ocular.phar code-coverage:upload --access-token="93bdd4aee7a5446ac53fe372f1526b6a3d8af949ec675ab1963ca12398a4eebd" --format=php-clover coverage.clover; fi
+
