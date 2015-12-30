@@ -108,7 +108,7 @@ EOF;
             $sensiolab = new SensiolabHelper($this->guzzle,$this);
             $response = $sensiolab->getSensiolabVulnerabilties($fileLock);
 
-            if ($response==null | !is_array($response)) {
+            if (($response==null) | !is_array($response)) {
                 $this->error("Errore Response not vaild or null.");
                 continue;
             }
