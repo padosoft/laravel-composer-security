@@ -24,7 +24,8 @@ class ComposerSecurityCheck extends Command
      */
     protected $signature = 'composer-security:check
                             {path? : path where find composer.lock, you can use * as jolly character i.e. "/var/www/*/*/", use quotation marks}
-                            {--M|mail= : If you want send result to email}'
+                            {--M|mail= : If you want send result to email}
+                            {--w|whitelist= : If you want exclude from alarm some paths, divide by ","}'
                             ;
 
     /**
@@ -96,6 +97,12 @@ EOF;
         $this->tableVulnerabilities = [];
         $tuttoOk = true;
         $numLock=0;
+
+        //whitelist
+        $white= $option['whitelist'];
+        if($white!='') {
+            $whitelist = explode(",",$white);
+        }
 
         foreach ($lockFiles as $fileLock) {
             $this->line("Analizing <info>".($numLock+1)."</info> di <info>".count($lockFiles)."</info>: $fileLock ...");

@@ -1,14 +1,46 @@
 language: php
 
 php:
-
+    - 5.4
     - 5.5
     - 5.6
     - 7.0
 
+matrix:
+  include:
+  fast_finish: true
+  - php: 5.4
+    env: LARAVEL_VERSION=5.0
+  - php: 5.5
+    env: LARAVEL_VERSION=5.0
+  - php: 5.5
+    env: LARAVEL_VERSION=5.1
+  - php: 5.6
+    env: LARAVEL_VERSION=5.0
+  - php: 5.6
+    env: LARAVEL_VERSION=5.1
+  - php: 5.6
+    env: LARAVEL_VERSION=5.2
+  - php: 7
+    env: LARAVEL_VERSION=5.0
+  - php: 7
+    env: LARAVEL_VERSION=5.1
+  - php: 7
+    env: LARAVEL_VERSION=5.2
+
+  allow_failures:
+  - php: 5.4
+    env: LARAVEL_VERSION=5.0
+  - php: 5.5
+    env: LARAVEL_VERSION=5.0
+  - php: 5.6
+    env: LARAVEL_VERSION=5.0
+  - php: 7
+    env: LARAVEL_VERSION=5.0
+
 before_install:
   - composer self-update
-  - composer create-project laravel/laravel:5.1
+  - composer create-project laravel/laravel:$LARAVEL_VERSION
   - cd ./laravel
   - composer config repositories.alevento git https://github.com/alevento/composer
   - composer require padosoft/composer dev-master
