@@ -108,9 +108,7 @@ return [
     |
     */
 
-    'providers' => [
-
-        Padosoft\Composer\ComposerSecurityCheckServiceProvider::class,
+    'providers' => [ Padosoft\Composer\ComposerSecurityCheckServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */

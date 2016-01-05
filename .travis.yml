@@ -38,8 +38,7 @@ before_install:
   - composer require padosoft/composer dev-master
   - ./vendor/padosoft/composer/tests/config/sedCommand.sh
   - composer update
-  - rm ./config/app.php
-  - cp ./vendor/padosoft/composer/tests/config/app.php ./config
+  - ./vendor/padosoft/composer/tests/config/sedCommandProvider.sh
   - rm ./.env
   - cp ./vendor/padosoft/composer/tests/config/.env.dist ./.env
   - php artisan vendor:publish
