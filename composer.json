@@ -22,7 +22,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Padosoft\\Composer\\Test\\": "tests"
+                "Padosoft\\Composer\\Test\\": "tests"
         }
     }
 }
