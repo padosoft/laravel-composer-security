@@ -36,7 +36,7 @@ before_install:
   - cd ./laravel
   - composer config repositories.alevento git https://github.com/alevento/composer
   - composer require padosoft/composer dev-master
-  - if [[ $LARAVEL_VERSION != '5.0' ]]; then composer require mockery/mockery; fi
+  - if [[ $LARAVEL_VERSION == '5.0' ]]; then composer require mockery/mockery; fi
   - ./vendor/padosoft/composer/tests/config/sedCommand.sh
   - composer update
   - ./vendor/padosoft/composer/tests/config/sedCommandProvider.sh
