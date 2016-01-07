@@ -12,6 +12,7 @@ class ComposerSecurityCheckServiceProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = true;
+
     /**
      * Bootstrap the application events.
      *
@@ -29,6 +30,7 @@ class ComposerSecurityCheckServiceProvider extends ServiceProvider
             __DIR__ . '/views' => base_path('resources/views/padosoft/composer-security-check'),
         ]);
     }
+
     /**
      * Register the service provider.
      *
@@ -44,6 +46,7 @@ class ComposerSecurityCheckServiceProvider extends ServiceProvider
         $this->commands('command.composer-security:check');
 
     }
+
     /**
      * Get the services provided by the provider.
      *

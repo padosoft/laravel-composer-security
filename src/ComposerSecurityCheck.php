@@ -55,7 +55,7 @@ EOF;
     /**
      * @var array
      */
-    protected $headersTableConsole = ['name', 'version', 'title'];
+    protected $headersTableConsole = ['name', 'version', 'title', 'whitelist'];
 
     /**
      * @var array
@@ -107,7 +107,8 @@ EOF;
             $this->tableVulnerabilities[] = [
                 'name' => $fileLock,
                 'version' => '',
-                'advisories' => ''
+                'advisories' => '',
+                'isOk' => ''
             ];
 
             $sensiolab = new SensiolabHelper($this->guzzle,$this);
@@ -125,7 +126,7 @@ EOF;
                 $tuttoOk = in_array(rtrim(str_replace('\\','/',$fileLock),'composer.lock'),$whitelist);
 
                 foreach($sensiolab->parseVulnerability($key, $vulnerability) as $vul) {
-                    $this->tableVulnerabilities[]=$vul;
+                    $this->tableVulnerabilities[]=array_merge($vul,array('isOk'=>$tuttoOk));
                 }
             }
             $numLock++;
