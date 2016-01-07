@@ -37,6 +37,9 @@ class FileHelperTest extends TestBase
         //$this->assertEquals($this->fileHelper->findFiles('/pippo','composer.lock'),'/pippo/composer.lock');
     }
 
+    /**
+     * @return array
+     */
     public function provider()
     {
         return array(

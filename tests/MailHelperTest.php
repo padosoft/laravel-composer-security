@@ -59,6 +59,7 @@ class MailHelperTest extends MailTestCase
         $this->assertEmailBodyContains(Config::get('composer-security-check.mailSubjetcAlarm'),$response);
     }
 
+
     public function provider()
     {
 

@@ -136,6 +136,10 @@ EOF;
 
     }
 
+    /**
+     * @param $white
+     * @return array
+     */
     private function adjustWhiteList($white)
     {
         $whitelist = array();
@@ -148,6 +152,10 @@ EOF;
         return $whitelist;
     }
 
+    /**
+     * @param $mail
+     * @param $tuttoOk
+     */
     private function notifyResult($mail,$tuttoOk)
     {
         $esito=Config::get('composer-security-check.mailSubjectSuccess');
@@ -167,6 +175,10 @@ EOF;
         $this->sendEmail($mail,$tuttoOk);
     }
 
+    /**
+     * @param $mail
+     * @param $tuttoOk
+     */
     private function sendEmail($mail,$tuttoOk)
     {
         if($mail!='') {
