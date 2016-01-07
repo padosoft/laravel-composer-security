@@ -52,9 +52,9 @@
 
             @foreach ($vul as $d)
                 <tr style='
-                @if ($d['version'] != '' && $d['isOk']=='false')
+                @if ($d['version'] != '' && $d['isOk']==false)
                         color: red;font-weight:bold;
-                @elseif ($d['version'] != '' && $d['isOk']=='true')
+                @elseif ($d['version'] != '' && $d['isOk']==true)
                         color: darkorange;font-weight:bold;
                 @endif
                         '>
