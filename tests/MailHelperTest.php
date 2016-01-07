@@ -12,7 +12,7 @@ use \Illuminate\Support\Facades\File;
 use Padosoft\LaravelComposerSecurity\FileHelper;
 use Padosoft\LaravelComposerSecurity\MailHelper;
 use \Mockery as m;
-use Illuminate\LaravelComposerSecurity\Facades\Config;
+use Illuminate\Support\Facades\Config;
 
 
 class MailHelperTest extends MailTestCase
