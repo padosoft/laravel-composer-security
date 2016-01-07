@@ -99,14 +99,8 @@ EOF;
         $numLock=0;
 
         //whitelist
-        $white= $option['whitelist'];
-        $whitelist = array();
-        if($white!='') {
-            $w = explode(",",str_replace('\\','/',$white));
-            foreach($w as $item)  {
-                $whitelist[] = str_finish($item,'/');
-            }
-        }
+
+        $whitelist = $this->adjustWhiteList($option['whitelist']);
 
         foreach ($lockFiles as $fileLock) {
             $this->line("Analizing <info>".($numLock+1)."</info> di <info>".count($lockFiles)."</info>: $fileLock ...");
@@ -137,6 +131,24 @@ EOF;
             $numLock++;
         }
 
+        $this->notifyResult($option['mail'],$tuttoOk);
+
+    }
+
+    private function adjustWhiteList($white)
+    {
+        $whitelist = array();
+        if($white!='') {
+            $w = explode(",",str_replace('\\','/',$white));
+            foreach($w as $item)  {
+                $whitelist[] = str_finish($item,'/');
+            }
+        }
+        return $whitelist;
+    }
+
+    private function notifyResult($mail,$tuttoOk)
+    {
         $esito=Config::get('composer-security-check.mailSubjectSuccess');
 
         if (!$tuttoOk) {
@@ -151,12 +163,15 @@ EOF;
         $this->table($this->headersTableConsole, $this->tableVulnerabilities);
 
         //send email
-        $mail = $option['mail'];
+        $this->sendEmail($mail,$tuttoOk);
+    }
+
+    private function sendEmail($mail,$tuttoOk)
+    {
         if($mail!='') {
             $email = new MailHelper($this);
             $email->sendEmail($tuttoOk, $mail, $this->tableVulnerabilities);
         }
-
     }
 
     /**
