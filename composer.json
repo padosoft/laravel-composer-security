@@ -17,12 +17,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Padosoft\\Composer\\": "src"
+            "Padosoft\\LaravelComposerSecurity\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-                "Padosoft\\Composer\\Test\\": "tests"
+                "Padosoft\\LaravelComposerSecurity\\Test\\": "tests"
         }
     }
 }
