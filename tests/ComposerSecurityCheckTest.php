@@ -6,7 +6,7 @@
  * Time: 14:01
  */
 
-namespace Padosoft\Composer\Test;
+namespace Padosoft\LaravelComposerSecurity\Test;
 
 use GuzzleHttp\Client;
 use Padosoft\Composer\ComposerSecurityCheck;

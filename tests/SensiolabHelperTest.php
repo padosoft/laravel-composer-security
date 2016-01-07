@@ -6,7 +6,7 @@
  * Time: 10:59
  */
 
-namespace Padosoft\Composer\Test;
+namespace Padosoft\LaravelComposerSecurity\Test;
 
 use Illuminate\Console\Command;
 

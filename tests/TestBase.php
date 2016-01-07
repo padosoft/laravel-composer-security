@@ -6,7 +6,7 @@
  * Time: 16:06
  */
 
-namespace Padosoft\Composer\Test;
+namespace Padosoft\LaravelComposerSecurity\Test;
 
 class TestBase extends \TestCase
 {

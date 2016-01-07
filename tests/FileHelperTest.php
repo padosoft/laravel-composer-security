@@ -6,7 +6,7 @@
  * Time: 16:39
  */
 
-namespace Padosoft\Composer\Test;
+namespace Padosoft\LaravelComposerSecurity\Test;
 
 use \Illuminate\Support\Facades\File;
 use Padosoft\Composer\FileHelper;

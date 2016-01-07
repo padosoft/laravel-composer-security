@@ -1,5 +1,5 @@
 <?php
-namespace Padosoft\Composer;
+namespace Padosoft\LaravelComposerSecurity;
 
 use Illuminate\Support\ServiceProvider;
 use GuzzleHttp\Client;

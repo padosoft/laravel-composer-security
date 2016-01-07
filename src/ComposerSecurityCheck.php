@@ -1,6 +1,6 @@
 <?php
 
-namespace Padosoft\Composer;
+namespace Padosoft\LaravelComposerSecurity;
 
 use Illuminate\Console\Command;
 use Mail;

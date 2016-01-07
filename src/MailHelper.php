@@ -6,7 +6,7 @@
  * Time: 17:25
  */
 
-namespace Padosoft\Composer;
+namespace Padosoft\LaravelComposerSecurity;
 
 use Config;
 use Validator;

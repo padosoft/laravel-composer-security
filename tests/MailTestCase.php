@@ -7,7 +7,7 @@
  * Time: 12:37
  */
 
-namespace Padosoft\Composer\Test;
+namespace Padosoft\LaravelComposerSecurity\Test;
 
 use GuzzleHttp\Psr7\Response;
 

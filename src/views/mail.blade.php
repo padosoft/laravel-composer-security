@@ -52,12 +52,12 @@
 
             @foreach ($vul as $d)
                 <tr style='
-                @if ($d['version'] != '' && !$d['isOk'])
-                    color: red;font-weight:bold;
-                @elseif ($d['version'] != '' && $d['isOk'])
-                    color: darkorange;font-weight:bold;
+                @if ($d['version'] != '' && $d['isOk']=='false')
+                        color: red;font-weight:bold;
+                @elseif ($d['version'] != '' && $d['isOk']=='true')
+                        color: darkorange;font-weight:bold;
                 @endif
-                '>
+                        '>
                     <td>{{ $d['name'] }}</td>
                     <td>{{ $d['version'] }}</td>
                     <td>{{ $d['advisories'] }}</td>

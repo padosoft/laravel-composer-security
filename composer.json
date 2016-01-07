@@ -1,5 +1,5 @@
 {
-    "name": "padosoft/composer",
+    "name": "padosoft/laravel-composer-security",
     "description": "Security checker for composer.lock.",
     "keywords": ["composer", "security"],
     "license": "MIT",

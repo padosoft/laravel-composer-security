@@ -8,7 +8,7 @@
  */
 
 
-namespace Padosoft\Composer;
+namespace Padosoft\LaravelComposerSecurity;
 
 use \Illuminate\Foundation;
 use \Illuminate\Support\Facades\File;
