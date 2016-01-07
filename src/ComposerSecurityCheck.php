@@ -101,7 +101,12 @@ EOF;
         //whitelist
         $white= $option['whitelist'];
         if($white!='') {
-            $whitelist = explode(",",$white);
+            $w = explode(",",str_replace('\\','/',$white));
+            $whitelist = array();
+
+            foreach($w as $item)  {
+                $whitelist[] = str_finish($item,'/');
+            }
         }
 
         foreach ($lockFiles as $fileLock) {
@@ -124,7 +129,8 @@ EOF;
             }
 
             foreach ($response as $key => $vulnerability) {
-                $tuttoOk = false;
+                $tuttoOk = in_array(rtrim(str_replace('\\','/',$fileLock),'composer.lock'),$whitelist);
+
                 foreach($sensiolab->parseVulnerability($key, $vulnerability) as $vul) {
                     $this->tableVulnerabilities[]=$vul;
                 }
