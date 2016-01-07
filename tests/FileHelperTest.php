@@ -43,7 +43,7 @@ class FileHelperTest extends TestBase
     public function provider()
     {
         return array(
-            array('', 'composer.lock', '/home/travis/build/padosoft/laravelcomposersecurity/laravel/composer.lock')
+            array('', 'composer.lock', '/home/travis/build/alevento/composer/laravel/composer.lock')
         );
     }
 }
