@@ -100,10 +100,9 @@ EOF;
 
         //whitelist
         $white= $option['whitelist'];
+        $whitelist = array();
         if($white!='') {
             $w = explode(",",str_replace('\\','/',$white));
-            $whitelist = array();
-
             foreach($w as $item)  {
                 $whitelist[] = str_finish($item,'/');
             }
