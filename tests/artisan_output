@@ -1,12 +1,12 @@
-path: /home/travis/build/padosoft/laravelcomposersecurity/laravel/vendor/padosoft/composer/tests.\nCheck composer.lock files...
+path: /home/travis/build/padosoft/laravel-composer-security/laravel/vendor/padosoft/composer/tests.\nCheck composer.lock files...
 Find 1 composer.lock files.
-Analizing 1 di 1: /home/travis/build/padosoft/laravel-composer-security/laravel/vendor/padosoft/laravelcomposersecurity/tests/composer.lock ...
-Trovate 2 vulnerabilita' in /home/travis/build/padosoft/laravelcomposersecurity/laravel/vendor/laravelcomposersecurity/composer/tests/composer.lock
+Analizing 1 di 1: /home/travis/build/padosoft/laravel-composer-security/laravel/vendor/padosoft/laravel-composer-security/tests/composer.lock ...
+Trovate 2 vulnerabilita' in /home/travis/build/padosoft/laravel-composer-security/laravel/vendor/laravel-composer-security/composer/tests/composer.lock
 [composer-security-check]: Alarm - vulnerabilities detected.
 +-------------------------------------------------------------------------------------------------------------------------+---------+----------------------------------------+
 | name                                                                                                                    | version | title                                  |
 +-------------------------------------------------------------------------------------------------------------------------+---------+----------------------------------------+
-| /home/travis/build/padosoft/laravelcomposersecurity/laravel/vendor/padosoft/laravelcomposersecurity/tests/composer.lock |         |                                        |
+| /home/travis/build/padosoft/laravel-composer-security/laravel/vendor/padosoft/laravel-composer-security/tests/composer.lock |         |                                        |
 | symfony/http-foundation                                                                                                 | v2.4.10 | Unsafe methods in the Request class    |
 | symfony/http-kernel                                                                                                     | v2.4.10 | CVE-2015-4050: ESI unauthorized access |
 | symfony/http-kernel                                                                                                     | v2.4.10 | Esi Code Injection                     |

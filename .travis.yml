@@ -37,17 +37,17 @@ before_install:
   - composer config repositories.padosoft git https://github.com/padosoft/laravel-composer-security
   - composer require padosoft/laravel-composer-security dev-master
   - if [[ $LARAVEL_VERSION == '5.0' ]]; then composer require mockery/mockery; fi
-  - ./vendor/padosoft/laravelcomposersecurity/tests/config/sedCommand.sh
+  - ./vendor/padosoft/laravel-composer-security/tests/config/sedCommand.sh
   - composer update
-  - ./vendor/padosoft/laravelcomposersecurity/tests/config/sedCommandProvider.sh
+  - ./vendor/padosoft/laravel-composer-security/tests/config/sedCommandProvider.sh
   - rm ./.env
-  - cp ./vendor/padosoft/laravelcomposersecurity/tests/config/.env.dist ./.env
+  - cp ./vendor/padosoft/laravel-composer-security/tests/config/.env.dist ./.env
   - php artisan vendor:publish
   - gem install mailcatcher
   - mailcatcher
 
 script:
-  - vendor/bin/phpunit --configuration ./vendor/padosoft/laravelcomposersecurity/phpunit.xml.dist --testsuite Package --coverage-text --coverage-clover=coverage.clover
+  - vendor/bin/phpunit --configuration ./vendor/padosoft/laravel-composer-security/phpunit.xml.dist --testsuite Package --coverage-text --coverage-clover=coverage.clover
 
 
 after_script:
