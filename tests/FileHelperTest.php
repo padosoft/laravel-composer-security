@@ -9,7 +9,7 @@
 namespace Padosoft\LaravelComposerSecurity\Test;
 
 use \Illuminate\Support\Facades\File;
-use Padosoft\Composer\FileHelper;
+use Padosoft\LaravelComposerSecurity\FileHelper;
 
 class FileHelperTest extends TestBase
 {

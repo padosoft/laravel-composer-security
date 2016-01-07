@@ -12,7 +12,7 @@ use Illuminate\Console\Command;
 
 use \Mockery as m;
 use \Illuminate\Support\Facades\File;
-use \Padosoft\Composer\SensiolabHelper;
+use \Padosoft\LaravelComposerSecurity\SensiolabHelper;
 use \GuzzleHttp\Client;
 use \GuzzleHttp\Exception;
 use \GuzzleHttp\Exception\ClientException;

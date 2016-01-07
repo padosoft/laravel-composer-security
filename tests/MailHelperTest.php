@@ -9,10 +9,10 @@
 namespace Padosoft\LaravelComposerSecurity\Test;
 
 use \Illuminate\Support\Facades\File;
-use Padosoft\Composer\FileHelper;
-use Padosoft\Composer\MailHelper;
+use Padosoft\LaravelComposerSecurity\FileHelper;
+use Padosoft\LaravelComposerSecurity\MailHelper;
 use \Mockery as m;
-use Illuminate\Support\Facades\Config;
+use Illuminate\LaravelComposerSecurity\Facades\Config;
 
 
 class MailHelperTest extends MailTestCase
