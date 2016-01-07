@@ -32,9 +32,9 @@ class FileHelperTest extends TestBase
     {
         //File::shouldReceive('isDirectory')->andReturn(true);
         //File::shouldReceive('glob')->andReturn('/pippo/composer.lock');
-        //dd($this->fileHelper->findFiles($path,$fileName));
+
         $this->assertEquals($this->fileHelper->findFiles($path,$fileName)[0],$lockFile);
-        //$this->assertEquals($this->fileHelper->findFiles('/pippo','composer.lock'),'/pippo/composer.lock');
+
     }
 
     /**
