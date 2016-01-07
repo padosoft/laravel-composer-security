@@ -9,121 +9,32 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 [![SensioLabsInsight][ico-sensiolab]][link-sensiolab]
 
-Il package un comando Artisan Laravel che consente di testare la sicurezza dei packages installati con il composer.lock.
+This package brings provides a command for testing security of composer packages installad for Laravel 5.1 or more.
 
 
 Table of Contents
 =================
 
-  * [PROGETTO LARAVEL COMPOSER SECURITY](#progetto-laravel-composer-security)
+  * [LARAVEL COMPOSER SECURITY PROJECT](#laravel-composer-security-project)
   * [Table of Contents](#table-of-contents)
-  * [PREREQUISITI](#prerequisiti)
-    * [INSTALLAZIONE  OPENSSL](#installazione--openssl)
-      * [Windows](#windows)
-      * [Linux](#linux)
-    * [GENERAZIONE CERTIFICATO E CHIAVE PUBBLICA](#generazione-certificato-e-chiave-pubblica)
-      * [Windows](#windows-1)
-      * [Linux](#linux-1)
-      * [Comandi da eseguire](#comandi-da-eseguire)
-    * [CONFIGURAZIONE](#configurazione)
-      * [Enviroment](#enviroment)
-      * [Permission folder](#permission-folder)
-  * [CHANGE LOG](#change-log)
-  * [USO DELLA LIBRERIA](#uso-della-libreria)
-    * [ESEMPIO BASE](#esempio-base)
-    * [OUTPUT](#output)
-      * [Output a video](#output-a-video)
-      * [Creazione File](#creazione-file)
-    * [VALIDAZIONE](#validazione)
-  * [ESEMPIO COMPLETO](#esempio-completo)
-    * [Screenshot esempio](#screenshot-esempio)
+  * [PREREQUISITES](#prerequisites)
+  * [INSTALL](#install)
+  * [USAGE](#usage)
   * [Contributing](#contributing)
   * [Security](#security)
   * [Credits](#credits)
   * [About Padosoft](#about-padosoft)
   * [License](#license)
   
-# PREREQUISITI
+# PREREQUISITES
 
-PHP 5.4+
-OpenSSL
+LARAVEL 5.1+
+GUZZLE 6+
 
-## INSTALLAZIONE  OPENSSL
+## INSTALL
 
-### Windows
-Scaricare l'eseguibile da https://slproweb.com/products/Win32OpenSSL.html , lanciarlo e seguire le istruzioni a video.
 
-### Linux
-OpenSSL é già installato di default in tutte le principali distribuzioni.
-Eventualmente, controllare la versione tramite il comando: 
-
-``` bash
-openssl version
-```
-se non aggiornata, lanciare i comandi:
-``` bash
-apt-get update && apt-get upgrade
-
-apt-get install openssl
-```
-
-## GENERAZIONE CERTIFICATO E CHIAVE PUBBLICA
-
-Collocare i file del certificato e delle chiavi nella directory specificata nella classe PathHelper (default: /tests/certificates).
-
-Se non in possesso dei file ufficiali del ministero, è possibile crearli a scopo di test della libreria seguendo le istruzioni seguenti:
-
-###Windows
-Lanciare il comando dal prompt DOS posizionandosi nella directory dove si trova openssl, di default C:\OpenSSL-Win32\bin
-
-###Linux
-Non é necessario spostarsi nel path, in quanto openSSL dovrebbe essere già essere disponibile all'avvio della shell.
-
-### Comandi da eseguire
-generazione chiave privata
-``` bash
-openssl genrsa -out test.key 1024
-```
-generazione chiave pubblica
-``` bash
-openssl rsa -in test.key -out test.pub -pubout
-```
-generazione certificato    
-``` bash
-openssl req -new -x509 -out test.crt -key test.key -days 30
-```
-Vedere anche http://www.programmazione.it/index.php?entity=eitem&idItem=36568
-
-## CONFIGURAZIONE
-
-### Enviroment
-Rinominare il file **.env.example** in **.env**
-aprirlo con un editor di testo e impostare le variabili:
-Esempio Windows:
-
-    TMP_PATH = "c:/xampp/htdocs/laravel-composer-security/tests/tmp/";
-    CERT_FILE = "c:/xampp/htdocs/laravel-composer-security/tests/certificates/test.crt";
-    OPENSSL_EXE_PATH = "c:/OpenSSL-Win32/bin/";
-
-Esempio Linux:
-
-    TMP_PATH = "/var/www/html/laravel-composer-security/tests/tmp/";
-    CERT_FILE = "/var/www/html/laravel-composer-security/tests/certificates/test.crt";
-    OPENSSL_EXE_PATH = "";
-
-### Permission folder
-Rendere queste directory scrivibili da php:
-``` bash
-
-```
-
-# CHANGE LOG
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-# USO DELLA LIBRERIA
-
-## ESEMPIO BASE
+## USAGE
 
 
 
@@ -154,7 +65,6 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/padosoft/laravel-composer-security.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/padosoft/laravel-composer-security.svg?style=flat-square
 [ico-sensiolab]: https://insight.sensiolabs.com/projects/80fa0430-55ff-4079-a34e-d189a9d21d5e/small.png
-[ico-hhvm-status]: http://hhvm.h4cc.de/badge/padosoft/laravel-composer-security.svg?style=flat
 
 [link-packagist]: https://packagist.org/packages/padosoft/laravel-composer-security
 [link-travis]: https://travis-ci.org/padosoft/laravel-composer-security
@@ -162,7 +72,6 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-code-quality]: https://scrutinizer-ci.com/g/padosoft/laravel-composer-security
 [link-downloads]: https://packagist.org/packages/padosoft/laravel-composer-security
 [link-sensiolab]: https://insight.sensiolabs.com/projects/80fa0430-55ff-4079-a34e-d189a9d21d5e
-[link-hhvm-status]: http://hhvm.h4cc.de/package/padosoft/laravel-composer-security
 [link-author]: https://github.com/lopadova
 [link-contributors]: ../../contributors
 
