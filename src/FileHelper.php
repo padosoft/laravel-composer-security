@@ -10,8 +10,7 @@
 
 namespace Padosoft\LaravelComposerSecurity;
 
-use \Illuminate\Foundation;
-use \Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\File;
 
 class FileHelper
 {

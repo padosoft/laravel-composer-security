@@ -3,15 +3,7 @@
 namespace Padosoft\LaravelComposerSecurity;
 
 use Illuminate\Console\Command;
-use Mail;
-use File;
-use Mockery\CountValidator\Exception;
-use Validator;
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Exception\ClientException;
 use Config;
 
 
@@ -114,7 +106,7 @@ EOF;
             $sensiolab = new SensiolabHelper($this->guzzle,$this);
             $response = $sensiolab->getSensiolabVulnerabilties($fileLock);
 
-            if (($response==null) | !is_array($response)) {
+            if (($response===null) | !is_array($response)) {
                 $this->error("Errore Response not vaild or null.");
                 continue;
             }

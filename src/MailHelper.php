@@ -11,6 +11,7 @@ namespace Padosoft\LaravelComposerSecurity;
 use Config;
 use Validator;
 use Illuminate\Console\Command;
+use Illuminate\Mail\Message;
 use Mail;
 
 class MailHelper
@@ -60,7 +61,7 @@ class MailHelper
         Mail::send(
             Config::get('composer-security-check.mailViewName'),
             ['vul' => $vul],
-            function ($message) use ($mail, $soggetto) {
+            function (Message $message) use ($mail, $soggetto) {
                 $message->from(
                     Config::get('composer-security-check.mailFrom'),
                     Config::get('composer-security-check.mailFromName')
