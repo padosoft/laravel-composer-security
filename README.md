@@ -134,13 +134,13 @@ protected function schedule(Schedule $schedule)
 ## SCREENSHOOTS
 
 OUTPUT CONSOLE:
-![demo tessera-sanitaria](https://raw.githubusercontent.com/padosoft/laravel-composer-security/master/resources/img/console-output.png)
+![screenshoot](https://raw.githubusercontent.com/padosoft/laravel-composer-security/master/resources/img/console-output.png)
 
 EMAIL VIEW WITH ALERT:
-![demo tessera-sanitaria](https://raw.githubusercontent.com/padosoft/laravel-composer-security/master/resources/img/alert-vulerability.png)
+![screenshoot](https://raw.githubusercontent.com/padosoft/laravel-composer-security/master/resources/img/alert-vulnerability.png)
 
 EMAIL VIEW WITH VULNERABILITY WITELISTED:
-![demo tessera-sanitaria](https://raw.githubusercontent.com/padosoft/laravel-composer-security/master/resources/img/warning-vulerability-witelisted.png)
+![screenshoot](https://raw.githubusercontent.com/padosoft/laravel-composer-security/master/resources/img/warning-vulerability-witelisted.png)
 
 # Testing
 ```bash
