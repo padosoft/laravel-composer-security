@@ -80,9 +80,9 @@ EOF;
      */
     private function hardWork($argument, $option)
     {
-
-        $this->line('path: <info>' . $argument['path'] . '</info>.\nCheck composer.lock files...');
-        $lockFiles = $this->findFilesComposerLock($argument['path']);
+        $path = $argument['path'];
+        $this->line('path: <info>' . $path . '</info>.\nCheck composer.lock files...');
+        $lockFiles = $this->findFilesComposerLock($path);
         $this->line('Find <info>' . count($lockFiles) . '</info> composer.lock files.');
 
         $this->tableVulnerabilities = [];
@@ -90,36 +90,14 @@ EOF;
         $numLock = 0;
 
         //whitelist
-
-        $whitelist = $this->adjustWhiteList($option['whitelist']);
+        $whitelist = WhiteList::adjustWhiteList($option['whitelist']);
 
         foreach ($lockFiles as $fileLock) {
-            $this->line("Analizing <info>" . ($numLock + 1) . "</info> di <info>" . count($lockFiles) . "</info>: $fileLock ...");
-            $this->tableVulnerabilities[] = [
-                'name' => $fileLock,
-                'version' => '',
-                'advisories' => '',
-                'isOk' => ''
-            ];
 
-            $sensiolab = new SensiolabHelper($this->guzzle, $this);
-            $response = $sensiolab->getSensiolabVulnerabilties($fileLock);
+            $this->line("Analizing <info>" . ($numLock + 1) . "</info> di <info>" . count($lockFiles) . "</info>");
 
-            if (($response === null) | !is_array($response)) {
-                $this->error("Errore Response not vaild or null.");
-                continue;
-            }
-            if (count($response) > 0) {
-                $this->error("Trovate " . count($response) . " vulnerabilita' in $fileLock");
-            }
+            $tuttoOk = $this->checkFile($fileLock, $whitelist);
 
-            foreach ($response as $key => $vulnerability) {
-                $tuttoOk = in_array(rtrim(str_replace('\\', '/', $fileLock), 'composer.lock'), $whitelist);
-
-                foreach ($sensiolab->parseVulnerability($key, $vulnerability) as $vul) {
-                    $this->tableVulnerabilities[] = array_merge($vul, array('isOk' => $tuttoOk));
-                }
-            }
             $numLock++;
         }
 
@@ -128,47 +106,35 @@ EOF;
     }
 
     /**
-     * @param $white
-     * @return array
-     */
-    private function adjustWhiteList($white)
-    {
-        $whitelist = array();
-
-        if ($white == '') {
-            return $whitelist;
-        }
-
-        $w = explode(",", str_replace('\\', '/', $white));
-
-        $whitelist = array_filter($w, function ($item) {
-            return str_finish($item, '/');
-        }
-        );
-
-        return $whitelist;
-    }
-
-    /**
      * @param $mail
      * @param $tuttoOk
      */
     private function notifyResult($mail, $tuttoOk)
     {
-        $esito = Config::get('composer-security-check.mailSubjectSuccess');
-
-        if (!$tuttoOk) {
-            $esito = Config::get('composer-security-check.mailSubjetcAlarm');
-            $this->error($esito);
-        } else {
-            $this->line($esito);
-        }
-
         //print to console
         $this->table($this->headersTableConsole, $this->tableVulnerabilities);
 
         //send email
         $this->sendEmail($mail, $tuttoOk);
+
+        if ($tuttoOk) {
+            return $this->notifyOK();
+        }
+
+        $this->notifyKO();
+    }
+
+
+    private function notifyOK()
+    {
+        $esito = Config::get('composer-security-check.mailSubjectSuccess');
+        $this->line($esito);
+    }
+
+    private function notifyKO()
+    {
+        $esito = Config::get('composer-security-check.mailSubjetcAlarm');
+        $this->error($esito);
     }
 
     /**
@@ -185,14 +151,57 @@ EOF;
 
     /**
      *
+     * @param $path
      * @return array of composer.lock file
      */
     private function findFilesComposerLock($path)
     {
         $file = new FileHelper();
-        return $file->findFiles($path, 'composer.lock');
+        $lockFiles = $file->findFiles($path, 'composer.lock');
+
+        if(!is_array($lockFiles)){
+            $lockFiles = array();
+        }
+
+        return $lockFiles;
     }
 
+    /**
+     * @param $fileLock
+     * @param $whitelist
+     * @return bool
+     */
+    private function checkFile($fileLock, $whitelist)
+    {
+        $this->line("Analizing: $fileLock ...");
+
+        $this->tableVulnerabilities[] = [
+            'name' => $fileLock,
+            'version' => '',
+            'advisories' => '',
+            'isOk' => ''
+        ];
+
+        $sensiolab = new SensiolabHelper($this->guzzle, $this);
+        $response = $sensiolab->getSensiolabVulnerabilties($fileLock);
+
+        if (($response === null) | !is_array($response)) {
+            $this->error("Errore Response not vaild or null.");
+            return true;
+        }
+        if (count($response) > 0) {
+            $this->error("Trovate " . count($response) . " vulnerabilita' in $fileLock");
+        }
+
+        $tuttoOk = in_array(rtrim(str_replace('\\', '/', $fileLock), 'composer.lock'), $whitelist);
+
+        foreach ($response as $key => $vulnerability) {
+
+            $this->tableVulnerabilities = array_merge($this->tableVulnerabilities, $sensiolab->checkResponse($key, $vulnerability, $tuttoOk));
+        }
+
+        return $tuttoOk;
+    }
 
 }
 

@@ -42,23 +42,23 @@ class SensiolabHelper
      */
     public function getSensiolabVulnerabilties($fileLock)
     {
-        $this->addVerboseLog('Send request to sensiolab: <info>'.$fileLock.'</info>');
+        $this->addVerboseLog('Send request to sensiolab: <info>' . $fileLock . '</info>');
 
         $debug = false;//set to true to log into console output
         $headers = [
             //OPTIONS
             'allow_redirects' => [
-                'max'             => 3,        // allow at most 10 redirects.
-                'strict'          => true,      // use "strict" RFC compliant redirects.
-                'referer'         => true,      // add a Referer header
-                'protocols'       => ['http', 'https'], // only allow http and https URLs
+                'max' => 3,        // allow at most 10 redirects.
+                'strict' => true,      // use "strict" RFC compliant redirects.
+                'referer' => true,      // add a Referer header
+                'protocols' => ['http', 'https'], // only allow http and https URLs
                 'track_redirects' => false
             ],
             'connect_timeout' => 20,//Use 0 to wait connection indefinitely
             'timeout' => 30, //Use 0 to wait response indefinitely
             'debug' => $debug,
             //HEADERS
-            'headers'  => [
+            'headers' => [
                 'Accept' => 'application/json'
             ],
             //UPLOAD FORM FILE
@@ -76,17 +76,17 @@ class SensiolabHelper
             $responseBody = $iResponse->getBody()->getContents();
             $response = json_decode($responseBody, true);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            $this->command->error("ClientException!\nMessage: ".$e->getMessage());
+            $this->command->error("ClientException!\nMessage: " . $e->getMessage());
             $colorTag = $this->getColorTagForStatusCode($e->getResponse()->getStatusCode());
-            $this->command->line("HTTP StatusCode: <{$colorTag}>".$e->getResponse()->getStatusCode()."<{$colorTag}>");
+            $this->command->line("HTTP StatusCode: <{$colorTag}>" . $e->getResponse()->getStatusCode() . "<{$colorTag}>");
             $this->printMessage($e->getResponse());
             $this->printMessage($e->getRequest());
         } catch (\GuzzleHttp\Exception\RequestException $e) {
-            $this->command->error("RequestException!\nMessage: ".$e->getMessage());
+            $this->command->error("RequestException!\nMessage: " . $e->getMessage());
             $this->printMessage($e->getRequest());
             if ($e->hasResponse()) {
                 $colorTag = $this->getColorTagForStatusCode($e->getResponse()->getStatusCode());
-                $this->command->line("HTTP StatusCode: <{$colorTag}>".$e->getResponse()->getStatusCode()."<{$colorTag}>");
+                $this->command->line("HTTP StatusCode: <{$colorTag}>" . $e->getResponse()->getStatusCode() . "<{$colorTag}>");
                 $this->printMessage($e->getResponse());
             }
         }
@@ -96,6 +96,7 @@ class SensiolabHelper
     /**
      * @param $name
      * @param $vulnerability
+     * @return array
      */
     public function parseVulnerability($name, $vulnerability)
     {
@@ -119,10 +120,27 @@ class SensiolabHelper
             ];
 
             $this->addVerboseLog($data['name'] . " " . $data['version'] . " " . $data2["title"], true);
-            $this->tableVulnerabilities[] =$dataTable;
+            $this->tableVulnerabilities[] = $dataTable;
         }
 
         return $this->tableVulnerabilities;
+    }
+
+    /**
+     * @param $key
+     * @param $vulnerability
+     * @param $tuttoOk
+     * @return array
+     */
+    public function checkResponse($key, $vulnerability, $tuttoOk)
+    {
+        $tableVulnerabilities = array();
+
+        foreach ($this->parseVulnerability($key, $vulnerability) as $vul) {
+            $tableVulnerabilities[] = array_merge($vul, array('isOk' => $tuttoOk));
+        }
+
+        return $tableVulnerabilities;
     }
 
     /**
@@ -146,21 +164,21 @@ class SensiolabHelper
      */
     private function printMessage(\Psr\Http\Message\MessageInterface $message)
     {
-        $type='';
-        if(is_a($message,'\Psr\Http\Message\RequestInterface')) {
-            $type='REQUEST';
-        } else if(is_a($message,'\Psr\Http\Message\ResponseInterface')) {
-            $type='RESPONSE';
+        $type = '';
+        if (is_a($message, '\Psr\Http\Message\RequestInterface')) {
+            $type = 'REQUEST';
+        } else if (is_a($message, '\Psr\Http\Message\ResponseInterface')) {
+            $type = 'RESPONSE';
         }
         $this->command->info("$type:");
-        $headers='';
+        $headers = '';
         foreach ($message->getHeaders() as $name => $values) {
             $headers .= $name . ': ' . implode(', ', $values) . "\r\n";
         }
         $this->command->comment($headers);
-        if($type=='REQUEST') {
+        if ($type == 'REQUEST') {
             $this->command->comment($message->getBody());
-        } else if($type=='RESPONSE') {
+        } else if ($type == 'RESPONSE') {
             $this->command->comment($message->getBody()->getContents());
         }
     }

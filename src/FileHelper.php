@@ -1,13 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Alessandro
- * Date: 02/12/2015
- * Time: 13:12
- */
-
-
 namespace Padosoft\LaravelComposerSecurity;
 
 use Illuminate\Support\Facades\File;

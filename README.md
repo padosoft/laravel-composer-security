@@ -103,15 +103,15 @@ php composer-security:check /path/to/my/repos --mail=mymail@mydomain.me
 
 Here is a basic example to check composer.lock into these dir:
 ```bash
-php artisan composer-security:check "/dit/to/check/*/*/"
+php artisan composer-security:check "/dir/to/check/*/*/"
 ```
 Here is an example to send output report to mail:
 ```bash
-php artisan composer-security:check "/dit/to/check/*/*/" --mail=mymail@mydomain
+php artisan composer-security:check "/dir/to/check/*/*/" --mail=mymail@mydomain
 ```
 Here is an example to ignore two composer.lock vulnerabilities into two dir (if command found any vulnerabilities into these dir, write it into output but the email subject isn't set to ALERT):
 ```bash
-php artisan composer-security:check "/dit/to/check/*/*/" --mail=mymail@mydomain --whitelist="/dir/to/put/in/witelist,/another/dir/to/put/in/witelist"
+php artisan composer-security:check "/dir/to/check/*/*/" --mail=mymail@mydomain --whitelist="/dir/to/put/in/witelist,/another/dir/to/put/in/witelist"
 ```
 
 
