@@ -161,7 +161,6 @@ class SensiolabHelper
 
     /**
      * @param \Psr\Http\Message\MessageInterface $message
-     * 
      */
     private function printMessage(\Psr\Http\Message\MessageInterface $message)
     {
