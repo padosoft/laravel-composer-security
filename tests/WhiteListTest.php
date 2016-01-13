@@ -5,6 +5,7 @@ namespace Padosoft\LaravelComposerSecurity\Test;
 
 use Padosoft\LaravelComposerSecurity\WhiteList;
 
+
 class WhiteListTest extends TestBase
 {
 

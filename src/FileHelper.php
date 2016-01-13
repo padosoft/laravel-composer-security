@@ -10,6 +10,7 @@ class FileHelper
      * @param $path
      * @param $fileName
      * @return array
+     * 
      */
     public function findFiles($path, $fileName)
     {
