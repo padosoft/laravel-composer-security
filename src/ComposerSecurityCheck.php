@@ -89,8 +89,7 @@ EOF;
         $tuttoOk = true;
         $numLock = 0;
 
-        //whitelist
-        $whitelist = WhiteList::adjustWhiteList($option['whitelist']);
+        $whitelist = FileHelper::adjustPath($option['whitelist']);
 
         foreach ($lockFiles as $fileLock) {
 
