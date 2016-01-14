@@ -157,7 +157,11 @@ EOF;
     private function findFilesComposerLock($path)
     {
         $file = new FileHelper();
-        $lockFiles = $file->findFiles($path, 'composer.lock');
+        $lockFiles = array();
+        foreach ($file->adjustPath($path) as $item) {
+            $lockFiles = array_merge($lockFiles,$file->findFiles($item, 'composer.lock'));
+        }
+
 
         if(!is_array($lockFiles)){
             $lockFiles = array();

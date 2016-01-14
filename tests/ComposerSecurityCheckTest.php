@@ -29,7 +29,7 @@ class ComposerSecurityCheckTest extends TestBase
     /** @test */
     public function testHardWork()
     {
-        Artisan::call('composer-security:check',['path'=>__DIR__,'--mail'=>'helpdesk@padosoft.com','--whitelist'=>'Y:\laravel-packages\www\laravel\5.2.x\packages\padosoft\laravel-composer-security\tests\,paperino']);
+        Artisan::call('composer-security:check',['path'=>__DIR__.',/var/www/html/*,'.__DIR__,'--mail'=>'helpdesk@padosoft.com','--whitelist'=>'Y:\laravel-packages\www\laravel\5.2.x\packages\padosoft\laravel-composer-security\tests\,paperino']);
         $output = Artisan::output();
         $this->assertContains('Trovate',$output);
         //$this->assertEquals(File::get(__DIR__.'/artisan_output'),$output);
