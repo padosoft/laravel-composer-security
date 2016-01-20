@@ -27,11 +27,37 @@ class ComposerSecurityCheckTest extends TestBase
     }
 
     /** @test */
-    public function testHardWork()
+    public function testHardWorkKO()
     {
-        Artisan::call('composer-security:check',['path'=>__DIR__.',/var/www/html/*,'.__DIR__,'--mail'=>'helpdesk@padosoft.com','--whitelist'=>'Y:\laravel-packages\www\laravel\5.2.x\packages\padosoft\laravel-composer-security\tests\,paperino']);
+        Artisan::call('composer-security:check',['path'=>__DIR__.'\test_file\composer_ko','--mail'=>'helpdesk@padosoft.com']);
         $output = Artisan::output();
         $this->assertContains('Trovate',$output);
+    }
+
+    /** @test */
+    public function testHardWorkOK()
+    {
+        Artisan::call('composer-security:check',['path'=>__DIR__.'\test_file\composer_ok','--mail'=>'helpdesk@padosoft.com','--whitelist'=>'Y:\laravel-packages\www\laravel\5.2.x\packages\padosoft\laravel-composer-security\tests\,paperino']);
+        $output = Artisan::output();
+        $this->assertContains('no vulnerabilities detected',$output);
+        //$this->assertEquals(File::get(__DIR__.'/artisan_output'),$output);
+    }
+
+    /** @test */
+    public function testHardWorkWhitelist()
+    {
+        Artisan::call('composer-security:check',['path'=>__DIR__.'\test_file\composer_ko','--mail'=>'helpdesk@padosoft.com','--whitelist'=>__DIR__.'\test_file\composer_ko']);
+        $output = Artisan::output();
+        $this->assertContains('no vulnerabilities detected',$output);
+        //$this->assertEquals(File::get(__DIR__.'/artisan_output'),$output);
+    }
+
+    /** @test */
+    public function testHardWorkMultiplePath()
+    {
+        Artisan::call('composer-security:check',['path'=>__DIR__.'\test_file\composer_ko,'.__DIR__.'\test_file\composer_ok' ,'--mail'=>'helpdesk@padosoft.com','--whitelist'=>__DIR__.'\test_file\composer_ko']);
+        $output = Artisan::output();
+        $this->assertContains('no vulnerabilities detected',$output);
         //$this->assertEquals(File::get(__DIR__.'/artisan_output'),$output);
     }
 

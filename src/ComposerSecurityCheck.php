@@ -192,9 +192,10 @@ EOF;
             $this->error("Errore Response not vaild or null.");
             return true;
         }
-        if (count($response) > 0) {
-            $this->error("Trovate " . count($response) . " vulnerabilita' in $fileLock");
+        if (count($response) == 0) {
+            return true;
         }
+        $this->error("Trovate " . count($response) . " vulnerabilita' in $fileLock");
 
         $tuttoOk = in_array(rtrim(str_replace('\\', '/', $fileLock), 'composer.lock'), $whitelist);
 
