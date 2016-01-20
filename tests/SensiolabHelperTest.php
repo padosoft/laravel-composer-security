@@ -70,7 +70,7 @@ class SensiolabHelperTest extends TestBase
     public function testGetSensiolabVulnerabilties()
     {
         $sensiolabHelper = new SensiolabHelper($this->guzzle,$this->mockCommand);
-        $response = $sensiolabHelper->getSensiolabVulnerabilties(__DIR__.'/composer.lock');
+        $response = $sensiolabHelper->getSensiolabVulnerabilties(__DIR__.'/test_file/composer_ko/composer.lock');
         $this->assertEquals(File::get(__DIR__.'/risposta.json'), json_encode($response));
 
 
@@ -88,7 +88,7 @@ class SensiolabHelperTest extends TestBase
         $mockGuzzleClientException->shouldReceive('request')->once()->andThrow($mockClientException);
 
         $sensiolabHelperClientException = new SensiolabHelper($mockGuzzleClientException,$this->mockCommand);
-        $response = $sensiolabHelperClientException->getSensiolabVulnerabilties(__DIR__.'/composer.lock');
+        $response = $sensiolabHelperClientException->getSensiolabVulnerabilties(__DIR__.'/test_file/composer_ko/composer.lock');
         $this->assertEquals(null,$response);
 
     }
@@ -105,7 +105,7 @@ class SensiolabHelperTest extends TestBase
         $mockGuzzleRequestException->shouldReceive('request')->once()->andThrow($mockRequestException);
 
         $sensiolabHelperRequestException = new SensiolabHelper($mockGuzzleRequestException,$this->mockCommand);
-        $response = $sensiolabHelperRequestException->getSensiolabVulnerabilties(__DIR__.'/composer.lock');
+        $response = $sensiolabHelperRequestException->getSensiolabVulnerabilties(__DIR__.'/test_file/composer_ko/composer.lock');
         $this->assertEquals(null,$response);
     }
 
@@ -143,8 +143,8 @@ class SensiolabHelperTest extends TestBase
         $client = new Client(['handler' => $handler]);
 
         $sensio = new SensiolabHelper($client,$this->mockCommand);
-        $this->assertEquals(null,$sensio->getSensiolabVulnerabilties(__DIR__.'/composer.lock'));
-        $this->assertEquals(null,$sensio->getSensiolabVulnerabilties(__DIR__.'/composer.lock'));
+        $this->assertEquals(null,$sensio->getSensiolabVulnerabilties(__DIR__.'/test_file/composer_ko/composer.lock'));
+        $this->assertEquals(null,$sensio->getSensiolabVulnerabilties(__DIR__.'/test_file/composer_ko/composer.lock'));
 
     }
 
