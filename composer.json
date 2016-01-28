@@ -28,11 +28,5 @@
         "psr-4": {
                 "Padosoft\\LaravelComposerSecurity\\Test\\": "tests"
         }
-    },
-    "repositories": {
-        "padosoft": {
-            "type": "git",
-            "url": "https://github.com/padosoft/test"
-        }
     }
 }
