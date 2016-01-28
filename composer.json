@@ -13,11 +13,10 @@
     "require": {
         "guzzlehttp/guzzle": "~6.0",
         "illuminate/support": "~5.0",
-		"illuminate/console": "~5.0",
-        "padosoft/laravel-test": "0.1.1"
+		"illuminate/console": "~5.0"
     },
     "require-dev": {
-
+        "padosoft/laravel-test": "0.1.1"
     },
     "autoload": {
         "psr-4": {
