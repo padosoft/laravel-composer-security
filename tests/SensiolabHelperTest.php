@@ -22,7 +22,7 @@ use \GuzzleHttp\Psr7\Response;
 use \GuzzleHttp\Psr7\Request;
 use \GuzzleHttp\HandlerStack;
 
-class SensiolabHelperTest extends TestBase
+class SensiolabHelperTest extends \Padosoft\LaravelTest\TestBase
 {
 
     protected $guzzle;

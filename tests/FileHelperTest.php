@@ -11,7 +11,7 @@ namespace Padosoft\LaravelComposerSecurity\Test;
 use \Illuminate\Support\Facades\File;
 use Padosoft\LaravelComposerSecurity\FileHelper;
 
-class FileHelperTest extends TestBase
+class FileHelperTest extends \Padosoft\LaravelTest\TestBase
 {
     protected $fileHelper;
 
@@ -61,6 +61,7 @@ class FileHelperTest extends TestBase
     public function provider()
     {
         return array(
+            //array('Y:/laravel-packages/www/laravel/5.2.x/', 'composer.lock')
             array('', 'composer.lock')
         );
     }

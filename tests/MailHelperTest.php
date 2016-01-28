@@ -15,8 +15,9 @@ use \Mockery as m;
 use Illuminate\Support\Facades\Config;
 
 
-class MailHelperTest extends MailTestCase
+class MailHelperTest extends \Padosoft\LaravelTest\TestBase
 {
+    use \Padosoft\Test\MailCatcherTools;
 
     protected $mockCommand;
     protected $mailHelper;

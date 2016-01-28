@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Padosoft\LaravelComposerSecurity\Test\TestBase;
 
-class ComposerSecurityCheckTest extends TestBase
+class ComposerSecurityCheckTest extends \Padosoft\LaravelTest\TestBase
 {
     protected $guzzle;
     protected $composerSecurityCheck;

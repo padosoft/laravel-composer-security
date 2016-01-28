@@ -25,3 +25,4 @@ tests/tmp
 *.stl
 
 *.env
+.idea

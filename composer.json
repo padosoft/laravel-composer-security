@@ -15,6 +15,9 @@
         "illuminate/support": "~5.0",
 		"illuminate/console": "~5.0"
     },
+    "require-dev": {
+        "padosoft/laravel-test": "0.1.1"
+    },
     "autoload": {
         "psr-4": {
             "Padosoft\\LaravelComposerSecurity\\": "src"
@@ -23,6 +26,12 @@
     "autoload-dev": {
         "psr-4": {
                 "Padosoft\\LaravelComposerSecurity\\Test\\": "tests"
+        }
+    },
+    "repositories": {
+        "padosoft": {
+            "type": "git",
+            "url": "https://github.com/padosoft/test"
         }
     }
 }
