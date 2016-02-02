@@ -16,8 +16,8 @@
 		"illuminate/console": "~5.0"
     },
     "require-dev": {
-        "padosoft/laravel-test": "0.1.1",
-        "padosoft/test": "0.1.0"
+        "padosoft/laravel-test": "0.1.2",
+        "padosoft/test": "0.1.1"
     },
     "autoload": {
         "psr-4": {
