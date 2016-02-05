@@ -27,7 +27,7 @@ class ComposerSecurityCheckServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/views', 'composer-security-check');
 
         $this->publishes([
-            __DIR__ . '/views' => base_path('resource/views/vendor/composer-security-check'),
+            __DIR__ . '/views' => base_path('resources/views/vendor/composer-security-check'),
         ]);
     }
 

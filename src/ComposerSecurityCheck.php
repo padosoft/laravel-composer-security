@@ -17,6 +17,7 @@ class ComposerSecurityCheck extends Command
     protected $signature = 'composer-security:check
                             {path? : path where find composer.lock, you can use * as jolly character i.e. "/var/www/*/*/", use quotation marks}
                             {--M|mail= : If you want send result to email}
+                            {--N|nomailok=false : True if you want send result to email only for alarm, false is default}
                             {--w|whitelist= : If you want exclude from alarm some paths, divide by ","}';
 
     /**
@@ -100,7 +101,7 @@ EOF;
             $numLock++;
         }
 
-        $this->notifyResult($option['mail'], $tuttoOk);
+        $this->notifyResult($option['mail'], $option['nomailok'], $tuttoOk);
 
     }
 
@@ -108,13 +109,16 @@ EOF;
      * @param $mail
      * @param $tuttoOk
      */
-    private function notifyResult($mail, $tuttoOk)
+    private function notifyResult($mail, $nomailok, $tuttoOk)
     {
+
         //print to console
         $this->table($this->headersTableConsole, $this->tableVulnerabilities);
 
         //send email
-        $this->sendEmail($mail, $tuttoOk);
+        if(!$nomailok || !$tuttoOk) {
+            $this->sendEmail($mail, $tuttoOk);
+        }
 
         if ($tuttoOk) {
             return $this->notifyOK();

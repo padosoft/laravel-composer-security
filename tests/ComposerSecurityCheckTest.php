@@ -53,6 +53,16 @@ class ComposerSecurityCheckTest extends \Padosoft\LaravelTest\TestBase
     }
 
     /** @test */
+    public function testHardWorkNoMail()
+    {
+        Artisan::call('composer-security:check',['path'=>__DIR__.'\test_file\composer_ok','--mail'=>'helpdesk@padosoft.com','--nomailok'=>'true','--whitelist'=>'Y:\laravel-packages\www\laravel\5.2.x\packages\padosoft\laravel-composer-security\tests\,paperino']);
+        $output = Artisan::output();
+        $this->assertNotRegExp('/email sent/',$output);
+
+    }
+
+
+    /** @test */
     public function testHardWorkMultiplePath()
     {
         Artisan::call('composer-security:check',['path'=>__DIR__.'\test_file\composer_ko,'.__DIR__.'\test_file\composer_ok' ,'--mail'=>'helpdesk@padosoft.com','--whitelist'=>__DIR__.'\test_file\composer_ko']);
