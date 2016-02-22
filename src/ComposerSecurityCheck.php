@@ -115,8 +115,14 @@ EOF;
         //print to console
         $this->table($this->headersTableConsole, $this->tableVulnerabilities);
 
+        $nomailok_bool = false;
+
+        if ($nomailok!='' && strtolower($nomailok)=='true') {
+            $nomailok_bool = true;
+        }
+
         //send email
-        if(!$nomailok || !$tuttoOk) {
+        if(!$nomailok_bool || !$tuttoOk) {
             $this->sendEmail($mail, $tuttoOk);
         }
 

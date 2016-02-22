@@ -61,6 +61,32 @@ class ComposerSecurityCheckTest extends \Padosoft\LaravelTest\TestBase
 
     }
 
+    /** @test */
+    public function testHardWorkYesMail()
+    {
+        Artisan::call('composer-security:check',['path'=>__DIR__.'\test_file\composer_ok','--mail'=>'helpdesk@padosoft.com','--nomailok'=>'false','--whitelist'=>'Y:\laravel-packages\www\laravel\5.2.x\packages\padosoft\laravel-composer-security\tests\,paperino']);
+        $output = Artisan::output();
+        $this->assertRegExp('/email sent/',$output);
+
+    }
+
+    /** @test */
+    public function testHardWorkNoMailOk_ButNoOk()
+    {
+        Artisan::call('composer-security:check',['path'=>__DIR__.'\test_file\composer_ko','--mail'=>'helpdesk@padosoft.com','--nomailok'=>'true','--whitelist'=>'Y:\laravel-packages\www\laravel\5.2.x\packages\padosoft\laravel-composer-security\tests\,paperino']);
+        $output = Artisan::output();
+        $this->assertRegExp('/email sent/',$output);
+
+    }
+
+    /** @test */
+    public function testHardWorkYesMailOk_ButNoOk()
+    {
+        Artisan::call('composer-security:check',['path'=>__DIR__.'\test_file\composer_ko','--mail'=>'helpdesk@padosoft.com','--nomailok'=>'false','--whitelist'=>'Y:\laravel-packages\www\laravel\5.2.x\packages\padosoft\laravel-composer-security\tests\,paperino']);
+        $output = Artisan::output();
+        $this->assertRegExp('/email sent/',$output);
+
+    }
 
     /** @test */
     public function testHardWorkMultiplePath()

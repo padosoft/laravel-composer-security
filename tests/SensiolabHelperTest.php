@@ -71,9 +71,11 @@ class SensiolabHelperTest extends \Padosoft\LaravelTest\TestBase
     {
         $sensiolabHelper = new SensiolabHelper($this->guzzle,$this->mockCommand);
         $response = $sensiolabHelper->getSensiolabVulnerabilties(__DIR__.'/test_file/composer_ko/composer.lock');
-        $this->assertEquals(File::get(__DIR__.'/risposta.json'), json_encode($response));
-
-
+        $this->assertArrayHasKey('version',$response[array_keys($response)[0]]);
+        $this->assertArrayHasKey('advisories',$response[array_keys($response)[0]]);
+        $this->assertArrayHasKey('title',$response[array_keys($response)[0]]['advisories'][array_keys($response[array_keys($response)[0]]['advisories'])[0]]);
+        $this->assertArrayHasKey('link',$response[array_keys($response)[0]]['advisories'][array_keys($response[array_keys($response)[0]]['advisories'])[0]]);
+        $this->assertArrayHasKey('cve',$response[array_keys($response)[0]]['advisories'][array_keys($response[array_keys($response)[0]]['advisories'])[0]]);
     }
 
     /** @test
