@@ -1,0 +1,58 @@
+language: php
+
+matrix:
+  fast_finish: true
+  include:
+  - php: 5.5
+    env: LARAVEL_VERSION=5.0
+  - php: 5.5
+    env: LARAVEL_VERSION=5.1
+  - php: 5.6
+    env: LARAVEL_VERSION=5.0
+  - php: 5.6
+    env: LARAVEL_VERSION=5.1
+  - php: 5.6
+    env: LARAVEL_VERSION=5.2
+  - php: 7
+    env: LARAVEL_VERSION=5.0
+  - php: 7
+    env: LARAVEL_VERSION=5.1
+  - php: 7
+    env: LARAVEL_VERSION=5.2
+
+  allow_failures:
+  - php: 5.4
+    env: LARAVEL_VERSION=5.0
+  - php: 5.5
+    env: LARAVEL_VERSION=5.0
+  - php: 5.6
+    env: LARAVEL_VERSION=5.0
+  - php: 7
+    env: LARAVEL_VERSION=5.0
+
+before_install:
+  - composer self-update
+  - composer create-project laravel/laravel:$LARAVEL_VERSION
+  - cd ./laravel
+  - composer require padosoft/test 0.1.0
+  - composer require padosoft/laravel-test 0.1.1
+  - composer require padosoft/laravel-composer-security dev-master
+  - if [[ $LARAVEL_VERSION == '5.0' ]]; then composer require mockery/mockery; fi
+  - chmod 777 -R ./
+  - ./vendor/padosoft/laravel-composer-security/tests/config/sedCommand.sh
+  - composer update
+  - ./vendor/padosoft/laravel-composer-security/tests/config/sedCommandProvider.sh
+  - rm ./.env
+  - cp ./vendor/padosoft/laravel-composer-security/tests/config/.env.dist ./.env
+  - php artisan vendor:publish
+  - gem install mailcatcher
+  - mailcatcher
+
+script:
+  - vendor/bin/phpunit --configuration ./vendor/padosoft/laravel-composer-security/phpunit.xml.dist --testsuite Package --coverage-text --coverage-clover=coverage.clover
+
+
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - if [[ $TRAVIS_PHP_VERSION != '7.0' ]]; then php ocular.phar code-coverage:upload --access-token="93bdd4aee7a5446ac53fe372f1526b6a3d8af949ec675ab1963ca12398a4eebd" --format=php-clover coverage.clover; fi
+
