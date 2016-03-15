@@ -11,5 +11,5 @@ return array(
     'mailFrom' => env('SECURITY_CHECK_MESSAGE_FROM', 'info@example.com'),
     'mailFromName' => env('SECURITY_CHECK_MESSAGE_FROM_NAME', 'Info Example'),
     'mailViewName' => env('SECURITY_CHECK_MAIL_VIEW_NAME', 'composer-security-check::mail'),
-    'logFilePath' => env('SECURITY_CHECK_LOG_FILE_PATH', storage_path().'/composersecurityCheck.log')
+    'logFilePath' => env('SECURITY_CHECK_LOG_FILE_PATH', storage_path().'/logs/composersecurityCheck.log')
  );
