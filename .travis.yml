@@ -54,6 +54,7 @@ before_install:
   - gem install awesome_bot
   - mailcatcher
 
+
 script:
   - vendor/bin/phpunit --configuration ./vendor/padosoft/laravel-composer-security/phpunit.xml.dist --testsuite Package --coverage-text --coverage-clover=coverage.clover
   - awesome_bot README.md
