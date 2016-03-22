@@ -31,11 +31,7 @@ matrix:
     env: LARAVEL_VERSION=5.0
 
 before_install:
-  - sudo apt-get install python-software-properties
-  - sudo apt-add-repository -y ppa:brightbox/ruby-ng  > /dev/null 2>&1
-  - sudo apt-get update
-  - sudo apt-get install ruby2.1 ruby-switch
-  - sudo ruby-switch --set ruby2.1
+
   - composer self-update
   - composer create-project laravel/laravel:$LARAVEL_VERSION
   - cd ./laravel
@@ -51,13 +47,12 @@ before_install:
   - cp ./vendor/padosoft/laravel-composer-security/tests/config/.env.dist ./.env
   - php artisan vendor:publish
   - gem install mailcatcher
-  - gem install awesome_bot
   - mailcatcher
 
 
 script:
   - vendor/bin/phpunit --configuration ./vendor/padosoft/laravel-composer-security/phpunit.xml.dist --testsuite Package --coverage-text --coverage-clover=coverage.clover
-  - awesome_bot README.md
+
 
 
 
