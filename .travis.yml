@@ -46,7 +46,7 @@ before_install:
   - cp ./vendor/padosoft/laravel-composer-security/tests/config/.env.dist ./.env
   - php artisan vendor:publish
   - gem install mailcatcher
-  - sudo apt-get install ruby
+  - sudo apt-get install ruby2.2
   - gem install awesome_bot
   - mailcatcher
 
