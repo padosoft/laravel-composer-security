@@ -77,6 +77,10 @@ return array(
  );
 ```
 
+In config folder you can copy from .env.example the settings for yours .env file used in composer-security-check.php.
+If you use mathiasgrimm/laravel-env-validator in config folder you'll find and example for validate the env settings.
+
+
 ## USAGE
 
 When the installation is done you can easily run command to print help:
