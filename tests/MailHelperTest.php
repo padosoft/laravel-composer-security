@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Config;
 
 class MailHelperTest extends \Padosoft\LaravelTest\TestBase
 {
-    use \Padosoft\Test\MailCatcherTools;
+    use \Padosoft\Test\traits\MailCatcherTools;
 
     protected $mockCommand;
     protected $mailHelper;
