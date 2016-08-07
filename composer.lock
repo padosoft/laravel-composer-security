@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3cb009fe734ac99de0132fbd4b42e4b6",
+    "hash": "091e3d80d5fe498953da2250fdf0a346",
     "content-hash": "68dd40bdb9dd8faf43d37c5c7f5e7400",
     "packages": [
         {
@@ -780,16 +780,16 @@
         },
         {
             "name": "padosoft/laravel-test",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/padosoft/laravel-test.git",
-                "reference": "f11bace3ee9a28f1f105113002e2bcdf04f89362"
+                "reference": "0640be45ab0e71a601d0198fe29d54f1c92420e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padosoft/laravel-test/zipball/f11bace3ee9a28f1f105113002e2bcdf04f89362",
-                "reference": "f11bace3ee9a28f1f105113002e2bcdf04f89362",
+                "url": "https://api.github.com/repos/padosoft/laravel-test/zipball/0640be45ab0e71a601d0198fe29d54f1c92420e8",
+                "reference": "0640be45ab0e71a601d0198fe29d54f1c92420e8",
                 "shasum": ""
             },
             "require": {
@@ -817,20 +817,20 @@
                 "laravel",
                 "test"
             ],
-            "time": "2016-08-07 20:08:59"
+            "time": "2016-08-07 22:11:55"
         },
         {
             "name": "padosoft/test",
-            "version": "0.1.4",
+            "version": "0.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/padosoft/test.git",
-                "reference": "8d22c59325a9eeee504f18528786a916223b6315"
+                "reference": "83879a7e73d9002822e2ba72853a4a462fdaddaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padosoft/test/zipball/8d22c59325a9eeee504f18528786a916223b6315",
-                "reference": "8d22c59325a9eeee504f18528786a916223b6315",
+                "url": "https://api.github.com/repos/padosoft/test/zipball/83879a7e73d9002822e2ba72853a4a462fdaddaf",
+                "reference": "83879a7e73d9002822e2ba72853a4a462fdaddaf",
                 "shasum": ""
             },
             "require": {
@@ -860,7 +860,7 @@
             "keywords": [
                 "test"
             ],
-            "time": "2016-08-07 20:04:12"
+            "time": "2016-08-07 22:08:22"
         },
         {
             "name": "phpdocumentor/reflection-common",
