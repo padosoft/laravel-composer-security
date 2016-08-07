@@ -30,9 +30,6 @@ matrix:
   - php: 7
     env: LARAVEL_VERSION=5.0
 
-before_deploy:
-  - rvm 1.9.3 do gem install mime-types -v 2.6.2
-
 before_install:
 
   - composer self-update
@@ -49,6 +46,7 @@ before_install:
   - rm ./.env
   - cp ./vendor/padosoft/laravel-composer-security/tests/config/.env.dist ./.env
   - php artisan vendor:publish
+  - rvm 1.9.3 do gem install mime-types -v 2.6.2
   - gem install mailcatcher
   - mailcatcher
 
