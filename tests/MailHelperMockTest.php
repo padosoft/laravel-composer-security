@@ -1,23 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Alessandro
- * Date: 07/12/2015
- * Time: 16:39
- */
 
 namespace Padosoft\LaravelComposerSecurity\Test;
 
-use \Illuminate\Support\Facades\File;
-use Padosoft\LaravelComposerSecurity\FileHelper;
 use Padosoft\LaravelComposerSecurity\MailHelper;
 use \Mockery as m;
 use Illuminate\Support\Facades\Config;
+use MailThief\Facades\MailThief;
+use MailThief\Testing\InteractsWithMail;
 
-
-class MailHelperTest extends \Padosoft\LaravelTest\TestBase
+/**
+ * Class MailHelperMockTest
+ * @package Padosoft\LaravelComposerSecurity\Test
+ */
+class MailHelperMockTest extends \Padosoft\LaravelTest\TestBase
 {
-    use \Padosoft\Test\traits\MailCatcherTools;
+    use InteractsWithMail;
 
     protected $mockCommand;
     protected $mailHelper;
@@ -39,11 +36,8 @@ class MailHelperTest extends \Padosoft\LaravelTest\TestBase
      */
     public function testSendEmailSuccess()
     {
-        //$mail = new MailHelper($this->mockCommand);
         $this->mailHelper->sendEmail(true ,"info@test.com",[]);
-        $response = $this->getLastEmailJson();
-        $this->assertEmailBodyContains(Config::get('composer-security-check.mailSubjectSuccess'),$response);
-
+        $this->seeMessageWithSubject(Config::get('composer-security-check.mailSubjectSuccess'));
     }
 
     /**
@@ -52,10 +46,8 @@ class MailHelperTest extends \Padosoft\LaravelTest\TestBase
      */
     public function testSendEmailAlarm($vul)
     {
-        //$mail = new MailHelper($this->mockCommand);
         $this->mailHelper->sendEmail(false ,"info@test.com",$vul);
-        $response = $this->getLastEmailJson();
-        $this->assertEmailBodyContains(Config::get('composer-security-check.mailSubjetcAlarm'),$response);
+        $this->seeMessageWithSubject(Config::get('composer-security-check.mailSubjetcAlarm'));
     }
 
 

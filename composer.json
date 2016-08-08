@@ -13,7 +13,8 @@
     "require": {
         "guzzlehttp/guzzle": "~6.0",
         "illuminate/support": "~5.0",
-		"illuminate/console": "~5.0"
+		"illuminate/console": "~5.0",
+        "tightenco/mailthief": "0.*"
     },
     "require-dev": {
         "padosoft/laravel-test": "^1.0",

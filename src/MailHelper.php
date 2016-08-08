@@ -61,7 +61,7 @@ class MailHelper
         Mail::send(
             Config::get('composer-security-check.mailViewName'),
             ['vul' => $vul],
-            function (Message $message) use ($mail, $soggetto) {
+            function ($message) use ($mail, $soggetto) {
                 $message->from(
                     Config::get('composer-security-check.mailFrom'),
                     Config::get('composer-security-check.mailFromName')
