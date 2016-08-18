@@ -11,7 +11,6 @@ namespace Padosoft\LaravelComposerSecurity;
 use Config;
 use Validator;
 use Illuminate\Console\Command;
-use Illuminate\Mail\Message;
 use Mail;
 
 class MailHelper
