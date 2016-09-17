@@ -80,7 +80,7 @@ class SensiolabHelper
             $colorTag = $this->getColorTagForStatusCode($e->getResponse()->getStatusCode());
             $this->command->line("HTTP StatusCode: <{$colorTag}>" . $e->getResponse()->getStatusCode() . "<{$colorTag}>");
             $resp = $e->getResponse();
-            if ($resp != null) {
+            if ($resp !== null) {
                 $this->printMessage($resp);
             }
             $this->printMessage($e->getRequest());
@@ -91,7 +91,7 @@ class SensiolabHelper
                 $colorTag = $this->getColorTagForStatusCode($e->getResponse()->getStatusCode());
                 $this->command->line("HTTP StatusCode: <{$colorTag}>" . $e->getResponse()->getStatusCode() . "<{$colorTag}>");
                 $resp = $e->getResponse();
-                if ($resp != null) {
+                if ($resp !== null) {
                     $this->printMessage($resp);
                 }
             }
