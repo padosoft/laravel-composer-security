@@ -8,7 +8,8 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 [![SensioLabsInsight][ico-sensiolab]][link-sensiolab]
 
-This is a Laravel 5.1.x/5.2.x package that provides an artisan command for testing security vulnerabilties into your composer.lock files.
+This is a Laravel 5.1/5.2/5.3 package that provides an artisan command for testing security vulnerabilties into your composer.lock files.
+Is ready and tested for php7.0 and php7.1 too.
 
 
 Table of Contents

@@ -46,7 +46,7 @@ before_install:
 
   - composer self-update
   - if [[ $LARAVEL_VERSION != '5.3' ]]; then composer create-project laravel/laravel:$LARAVEL_VERSION; fi
-  - if [[ $LARAVEL_VERSION == '5.3' ]]; then composer create-project laravel/laravel:$LARAVEL_VERSION --stability:dev; fi
+  - if [[ $LARAVEL_VERSION == '5.3' ]]; then composer create-project laravel/laravel:$LARAVEL_VERSION --stability dev; fi
   - composer update
   - cd ./laravel
   - composer require padosoft/laravel-test:1.1.*
