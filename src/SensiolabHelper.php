@@ -80,7 +80,9 @@ class SensiolabHelper
             $colorTag = $this->getColorTagForStatusCode($e->getResponse()->getStatusCode());
             $this->command->line("HTTP StatusCode: <{$colorTag}>" . $e->getResponse()->getStatusCode() . "<{$colorTag}>");
             $resp = $e->getResponse();
-            $this->printMessage($resp === null ? '' : $resp);
+            if ($resp != null) {
+                $this->printMessage($resp);
+            }
             $this->printMessage($e->getRequest());
         } catch (\GuzzleHttp\Exception\RequestException $e) {
             $this->command->error("RequestException!\nMessage: " . $e->getMessage());
@@ -89,7 +91,9 @@ class SensiolabHelper
                 $colorTag = $this->getColorTagForStatusCode($e->getResponse()->getStatusCode());
                 $this->command->line("HTTP StatusCode: <{$colorTag}>" . $e->getResponse()->getStatusCode() . "<{$colorTag}>");
                 $resp = $e->getResponse();
-                $this->printMessage($resp === null ? '' : $resp);
+                if ($resp != null) {
+                    $this->printMessage($resp);
+                }
             }
         }
         return $response;
@@ -131,7 +135,7 @@ class SensiolabHelper
     /**
      * @param $key
      * @param $vulnerability
-     * @param $tuttoOk
+     * @param bool $tuttoOk
      * @return array
      */
     public function checkResponse($key, $vulnerability, $tuttoOk)
@@ -146,7 +150,7 @@ class SensiolabHelper
     }
 
     /**
-     * @param            $msg
+     * @param string $msg
      * @param bool|false $error
      */
     private function addVerboseLog($msg, $error = false)
@@ -169,14 +173,13 @@ class SensiolabHelper
     private function printMessage(\Psr\Http\Message\MessageInterface $message)
     {
         $type = '';
+        $body = '';
         if (is_a($message, '\Psr\Http\Message\RequestInterface')) {
             $type = 'REQUEST';
             $body = $message->getBody();
-        } else {
-            if (is_a($message, '\Psr\Http\Message\ResponseInterface')) {
-                $type = 'RESPONSE';
-                $body = $message->getBody()->getContents();
-            }
+        } elseif (is_a($message, '\Psr\Http\Message\ResponseInterface')) {
+            $type = 'RESPONSE';
+            $body = $message->getBody()->getContents();
         }
         $this->command->info("$type:");
         $headers = '';
@@ -186,10 +189,8 @@ class SensiolabHelper
         $this->command->comment($headers);
         if ($type == 'REQUEST') {
             $this->command->comment($body);
-        } else {
-            if ($type == 'RESPONSE') {
-                $this->command->comment($body);
-            }
+        } elseif ($type == 'RESPONSE') {
+            $this->command->comment($body);
         }
     }
 
