@@ -72,6 +72,7 @@ notifications:
   email:
     recipients:
         - helpdesk@padosoft.com
+        - lorenzo.padovani@padosoft.com
     on_success: always
     on_failure: always
   slack:
