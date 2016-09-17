@@ -12,13 +12,23 @@ matrix:
   - php: 5.6
     env: LARAVEL_VERSION=5.1
   - php: 5.6
-    env: LARAVEL_VERSION=5.2.23
+    env: LARAVEL_VERSION=5.2
+  - php: 5.6
+    env: LARAVEL_VERSION=5.3
   - php: 7
     env: LARAVEL_VERSION=5.0
   - php: 7
     env: LARAVEL_VERSION=5.1
   - php: 7
-    env: LARAVEL_VERSION=5.2.23
+    env: LARAVEL_VERSION=5.2
+  - php: 7
+    env: LARAVEL_VERSION=5.3
+  - php: 7.1
+    env: LARAVEL_VERSION=5.1
+  - php: 7.1
+    env: LARAVEL_VERSION=5.2
+  - php: 7.1
+    env: LARAVEL_VERSION=5.3
 
   allow_failures:
   - php: 5.4
@@ -28,6 +38,8 @@ matrix:
   - php: 5.6
     env: LARAVEL_VERSION=5.0
   - php: 7
+    env: LARAVEL_VERSION=5.0
+  - php: 7.1
     env: LARAVEL_VERSION=5.0
 
 before_install:
@@ -59,4 +71,4 @@ script:
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
-  - if [[ $TRAVIS_PHP_VERSION != '7.0' ]]; then php ocular.phar code-coverage:upload --access-token="93bdd4aee7a5446ac53fe372f1526b6a3d8af949ec675ab1963ca12398a4eebd" --format=php-clover coverage.clover; fi
+  - if [[ $TRAVIS_PHP_VERSION != '7.0' && $TRAVIS_PHP_VERSION != '7.1' ]]; then php ocular.phar code-coverage:upload --access-token="93bdd4aee7a5446ac53fe372f1526b6a3d8af949ec675ab1963ca12398a4eebd" --format=php-clover coverage.clover; fi
