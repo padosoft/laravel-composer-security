@@ -29,7 +29,7 @@ matrix:
     env: LARAVEL_VERSION=5.2
   - php: 7.1
     env: LARAVEL_VERSION=5.3
-    
+
   allow_failures:
   - php: 5.4
     env: LARAVEL_VERSION=5.0
@@ -48,8 +48,8 @@ before_install:
   - composer create-project laravel/laravel:$LARAVEL_VERSION
   - composer update
   - cd ./laravel
-  - composer require padosoft/laravel-test ^1.*
-  - composer require padosoft/test ~0.1
+  - composer require padosoft/laravel-test 1.*
+  - composer require padosoft/test 0.1.*
   - composer require padosoft/laravel-composer-security dev-master
   - if [[ $LARAVEL_VERSION == '5.0' ]]; then composer require mockery/mockery; fi
   - chmod 777 -R ./
