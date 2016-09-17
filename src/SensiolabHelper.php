@@ -79,7 +79,8 @@ class SensiolabHelper
             $this->command->error("ClientException!\nMessage: " . $e->getMessage());
             $colorTag = $this->getColorTagForStatusCode($e->getResponse()->getStatusCode());
             $this->command->line("HTTP StatusCode: <{$colorTag}>" . $e->getResponse()->getStatusCode() . "<{$colorTag}>");
-            $this->printMessage($e->getResponse() === null ? '' : $e->getResponse());
+            $resp = $e->getResponse();
+            $this->printMessage($resp === null ? '' : $resp);
             $this->printMessage($e->getRequest());
         } catch (\GuzzleHttp\Exception\RequestException $e) {
             $this->command->error("RequestException!\nMessage: " . $e->getMessage());
@@ -87,7 +88,8 @@ class SensiolabHelper
             if ($e->hasResponse()) {
                 $colorTag = $this->getColorTagForStatusCode($e->getResponse()->getStatusCode());
                 $this->command->line("HTTP StatusCode: <{$colorTag}>" . $e->getResponse()->getStatusCode() . "<{$colorTag}>");
-                $this->printMessage($e->getResponse() === null ? '' : $e->getResponse());
+                $resp = $e->getResponse();
+                $this->printMessage($resp === null ? '' : $resp);
             }
         }
         return $response;
