@@ -1,4 +1,5 @@
 language: php
+
 matrix:
   fast_finish: true
   include:
@@ -26,6 +27,7 @@ matrix:
     env: LARAVEL_VERSION=5.2.23
   - php: 7.1
     env: LARAVEL_VERSION=5.3
+
   allow_failures:
   - php: 5.4
     env: LARAVEL_VERSION=5.0
@@ -37,6 +39,7 @@ matrix:
     env: LARAVEL_VERSION=5.0
   - php: 7.1
     env: LARAVEL_VERSION=5.0
+
 before_install:
 - composer self-update
 - if [[ $LARAVEL_VERSION != '5.3' ]]; then composer create-project laravel/laravel:$LARAVEL_VERSION;
@@ -64,13 +67,14 @@ before_install:
 - gem install mailcatcher
 - mailcatcher
 script:
-- vendor/bin/phpunit --configuration ./vendor/padosoft/laravel-composer-security/phpunit.xml.dist
-  --testsuite Package --coverage-text --coverage-clover=coverage.clover
+- vendor/bin/phpunit --configuration ./vendor/padosoft/laravel-composer-security/phpunit.xml.dist --testsuite Package --coverage-text --coverage-clover=coverage.clover
+
 after_script:
 - wget https://scrutinizer-ci.com/ocular.phar
-- if [[ $TRAVIS_PHP_VERSION != '7.0' && $TRAVIS_PHP_VERSION != '7.1' ]]; then php
-  ocular.phar code-coverage:upload --access-token="93bdd4aee7a5446ac53fe372f1526b6a3d8af949ec675ab1963ca12398a4eebd"
-  --format=php-clover coverage.clover; fi
+- if [[ $TRAVIS_PHP_VERSION != '7.0' && $TRAVIS_PHP_VERSION != '7.1' ]]; then php ocular.phar code-coverage:upload --access-token="93bdd4aee7a5446ac53fe372f1526b6a3d8af949ec675ab1963ca12398a4eebd" --format=php-clover coverage.clover; fi
+
 notifications:
+  email:
+    - helpdesk@padosoft.com
   slack:
     secure: w2TArNwrtSRHSGEV8FBLmiVlGL3/vLwthmFTZMEFa176/NX91lBsc/AUVpxW9VQBuPag1bLnOOkvBfXq36vh/m/ZmatnCKCeu24GFa9SbTsD39ApsWulMnJ1pYDtf12GD4G3y5B7R55vuKx22NXtXgXpjWS9GHsvtQGU6TkKrvdnEjSl60JmCoNtnKcuJRihAXMRBs1WjTcny73kxzINt/PcaKJ4s+v5CSCX18Gp3wM2tBBsG1R1ywmOPNoJ7vQ+pNTd3Exj/2YK4hEoqeVluiMNjtJdvgLmcc7V5stOdo06Aw9H5VKYZ08CyhGj245QEkFLER6bBpdRMQuYFYRrEugaZishciQV6Gu3+9EGPYWoaDvF9XhWPahqpxX0JMC/kfScouTyACMbwoDAxRoJLmxZWEXtdlW1K61vsaEZwhk9krrYqOsuBwp/Xqtr8q5wUehN5q9bWoXVnZN7RMYp/BZoGSvfYXTSbBji/nnNfOsrPA1RbF8iQl5ClfST8lPCoD+glAiixgO9kPG4fg3nxHxqora6/OpB6WlzTBE5hUs6EsXsWh/UgILL4eDXyPSs/afN/h3ZMAUJrqnFFowZSpQIS9Q12/n8UnIu9Vi8qKeGBwhLmJ5cE/ILf4TVWczEPxd5u9H8N0D/5Z8wlxI6uUGBYvl6us4PIpAX/cT3hjY=
