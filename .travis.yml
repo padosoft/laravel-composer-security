@@ -69,12 +69,6 @@ after_script:
 - if [[ $TRAVIS_PHP_VERSION != '7.0' && $TRAVIS_PHP_VERSION != '7.1' ]]; then php ocular.phar code-coverage:upload --access-token="93bdd4aee7a5446ac53fe372f1526b6a3d8af949ec675ab1963ca12398a4eebd" --format=php-clover coverage.clover; fi
 
 notifications:
-  email:
-    recipients:
-        - helpdesk@padosoft.com
-        - lorenzo.padovani@padosoft.com
-    on_success: always
-    on_failure: always
   slack:
     secure: dqmuPu/bIHfgvtNZI43yRnnvpqQ5GclrJcuiXGSeuok00dP0KoATDJRSgYQHp5B9wlwQeOLuc+9JiHq2WAB1VyOO1pdl8GWkUKE1FruI+8+NPbGl8OdxVVi100Vo31Q8NCG1Twd5iK+LPSjqt9v3fOVygL7QnRBFqvPgY/llmIkwjT+zZdNUaxO3fyn04C9ZiPNS1R2zJ67LgnSJogClmfyB2IkZZKOLyOSko4BAyxLymfE7z/5Mf4GTTAgX35K9y/8vubxaedjnVpk4LjvNYwgorzI/k9O+B/Cr5fSlYsHXLQ8zOn4VvoRuEKARZCQImglSpwEGhJtl0HI940YoSwvdpXj5ZbKyskYrg8DtCLPY3+PkBbg7hfWwqQPKGEJrDuhcHF5FGBOJeX8Oihi+27vOThlOTwYHVEAkGLvQ79HPhXhY7wB2vl/eqnLp1iczPbtpDp3PF7lMGW5YQ70aw+4hXxVMusltz+EcsnZNtcydFgdBbUiGmbAnygjMuFouJwtpo9kHmz7Niks7QL4pj/oq9fyYYfOSvuzQI/0LuJlMLfAw73eQqsLtHtNUnU+s5/fsRM8tiTi5HX3sWZWKiPi0IzU0C+OommwoyxxeOvlXxZkGRDbt/qimaOwkfZxKifEzZ2F5gg2gXbHEjSU3vf0X9UHafew7dhWx5XBthog=
     on_success: always
