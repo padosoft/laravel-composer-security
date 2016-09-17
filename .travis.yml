@@ -42,18 +42,13 @@ matrix:
 
 before_install:
 - composer self-update
-- if [[ $LARAVEL_VERSION != '5.3' ]]; then composer create-project laravel/laravel:$LARAVEL_VERSION;
-  fi
-- if [[ $LARAVEL_VERSION == '5.3' ]]; then composer create-project laravel/laravel:$LARAVEL_VERSION
-  --stability dev; fi
+- if [[ $LARAVEL_VERSION != '5.3' ]]; then composer create-project laravel/laravel:$LARAVEL_VERSION; fi
+- if [[ $LARAVEL_VERSION == '5.3' ]]; then composer create-project laravel/laravel:$LARAVEL_VERSION --stability dev; fi
 - composer update
 - cd ./laravel
-- if [[ $LARAVEL_VERSION != '5.3' ]]; then composer require padosoft/laravel-test:1.*;
-  fi
-- if [[ $LARAVEL_VERSION == '5.3' && $TRAVIS_PHP_VERSION == 7.0 ]]; then composer
-  require padosoft/laravel-test:2.*; fi
-- if [[ $LARAVEL_VERSION == '5.3' && $TRAVIS_PHP_VERSION == 7.1 ]]; then composer
-  require padosoft/laravel-test:2.*; fi
+- if [[ $LARAVEL_VERSION != '5.3' ]]; then composer require padosoft/laravel-test:1.*; fi
+- if [[ $LARAVEL_VERSION == '5.3' && $TRAVIS_PHP_VERSION == 7.0 ]]; then composer require padosoft/laravel-test:2.*; fi
+- if [[ $LARAVEL_VERSION == '5.3' && $TRAVIS_PHP_VERSION == 7.1 ]]; then composer require padosoft/laravel-test:2.*; fi
 - composer require padosoft/laravel-composer-security dev-master
 - if [[ $LARAVEL_VERSION == '5.0' ]]; then composer require mockery/mockery; fi
 - chmod 777 -R ./
@@ -75,6 +70,9 @@ after_script:
 
 notifications:
   email:
-    - helpdesk@padosoft.com
+    recipients:
+        - helpdesk@padosoft.com
+    on_success: always
+    on_failure: always
   slack:
     secure: w2TArNwrtSRHSGEV8FBLmiVlGL3/vLwthmFTZMEFa176/NX91lBsc/AUVpxW9VQBuPag1bLnOOkvBfXq36vh/m/ZmatnCKCeu24GFa9SbTsD39ApsWulMnJ1pYDtf12GD4G3y5B7R55vuKx22NXtXgXpjWS9GHsvtQGU6TkKrvdnEjSl60JmCoNtnKcuJRihAXMRBs1WjTcny73kxzINt/PcaKJ4s+v5CSCX18Gp3wM2tBBsG1R1ywmOPNoJ7vQ+pNTd3Exj/2YK4hEoqeVluiMNjtJdvgLmcc7V5stOdo06Aw9H5VKYZ08CyhGj245QEkFLER6bBpdRMQuYFYRrEugaZishciQV6Gu3+9EGPYWoaDvF9XhWPahqpxX0JMC/kfScouTyACMbwoDAxRoJLmxZWEXtdlW1K61vsaEZwhk9krrYqOsuBwp/Xqtr8q5wUehN5q9bWoXVnZN7RMYp/BZoGSvfYXTSbBji/nnNfOsrPA1RbF8iQl5ClfST8lPCoD+glAiixgO9kPG4fg3nxHxqora6/OpB6WlzTBE5hUs6EsXsWh/UgILL4eDXyPSs/afN/h3ZMAUJrqnFFowZSpQIS9Q12/n8UnIu9Vi8qKeGBwhLmJ5cE/ILf4TVWczEPxd5u9H8N0D/5Z8wlxI6uUGBYvl6us4PIpAX/cT3hjY=
