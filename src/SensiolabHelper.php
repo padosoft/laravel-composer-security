@@ -79,7 +79,7 @@ class SensiolabHelper
             $this->command->error("ClientException!\nMessage: " . $e->getMessage());
             $colorTag = $this->getColorTagForStatusCode($e->getResponse()->getStatusCode());
             $this->command->line("HTTP StatusCode: <{$colorTag}>" . $e->getResponse()->getStatusCode() . "<{$colorTag}>");
-            $this->printMessage($e->getResponse());
+            $this->printMessage($e->getResponse() === null ? '' : $e->getResponse());
             $this->printMessage($e->getRequest());
         } catch (\GuzzleHttp\Exception\RequestException $e) {
             $this->command->error("RequestException!\nMessage: " . $e->getMessage());
@@ -87,7 +87,7 @@ class SensiolabHelper
             if ($e->hasResponse()) {
                 $colorTag = $this->getColorTagForStatusCode($e->getResponse()->getStatusCode());
                 $this->command->line("HTTP StatusCode: <{$colorTag}>" . $e->getResponse()->getStatusCode() . "<{$colorTag}>");
-                $this->printMessage($e->getResponse());
+                $this->printMessage($e->getResponse() === null ? '' : $e->getResponse());
             }
         }
         return $response;
@@ -162,14 +162,19 @@ class SensiolabHelper
     /**
      * @param \Psr\Http\Message\MessageInterface $message
      *
+     * @throws \RuntimeException
      */
     private function printMessage(\Psr\Http\Message\MessageInterface $message)
     {
         $type = '';
         if (is_a($message, '\Psr\Http\Message\RequestInterface')) {
             $type = 'REQUEST';
-        } else if (is_a($message, '\Psr\Http\Message\ResponseInterface')) {
-            $type = 'RESPONSE';
+            $body = $message->getBody();
+        } else {
+            if (is_a($message, '\Psr\Http\Message\ResponseInterface')) {
+                $type = 'RESPONSE';
+                $body = $message->getBody()->getContents();
+            }
         }
         $this->command->info("$type:");
         $headers = '';
@@ -178,9 +183,11 @@ class SensiolabHelper
         }
         $this->command->comment($headers);
         if ($type == 'REQUEST') {
-            $this->command->comment($message->getBody());
-        } else if ($type == 'RESPONSE') {
-            $this->command->comment($message->getBody()->getContents());
+            $this->command->comment($body);
+        } else {
+            if ($type == 'RESPONSE') {
+                $this->command->comment($body);
+            }
         }
     }
 

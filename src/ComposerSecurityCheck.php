@@ -111,28 +111,26 @@ EOF;
      */
     private function notifyResult($mail, $nomailok, $tuttoOk)
     {
-
         //print to console
         $this->table($this->headersTableConsole, $this->tableVulnerabilities);
 
-        $nomailok_bool = false;
-
-        if ($nomailok!='' && strtolower($nomailok)=='true') {
-            $nomailok_bool = true;
-        }
-
         //send email
-        if(!$nomailok_bool || !$tuttoOk) {
+        if (!$tuttoOk || $nomailok == '' || strtolower($nomailok) != 'true') {
             $this->sendEmail($mail, $tuttoOk);
         }
 
-        if ($tuttoOk) {
+        $this->notify($tuttoOk);
+    }
+
+
+    private function notify($result)
+    {
+        if ($result) {
             return $this->notifyOK();
         }
 
         $this->notifyKO();
     }
-
 
     private function notifyOK()
     {
@@ -168,11 +166,11 @@ EOF;
         $file = new FileHelper();
         $lockFiles = array();
         foreach ($file->adjustPath($path) as $item) {
-            $lockFiles = array_merge($lockFiles,$file->findFiles($item, 'composer.lock'));
+            $lockFiles = array_merge($lockFiles, $file->findFiles($item, 'composer.lock'));
         }
 
 
-        if(!is_array($lockFiles)){
+        if (!is_array($lockFiles)) {
             $lockFiles = array();
         }
 
@@ -211,7 +209,8 @@ EOF;
 
         foreach ($response as $key => $vulnerability) {
 
-            $this->tableVulnerabilities = array_merge($this->tableVulnerabilities, $sensiolab->checkResponse($key, $vulnerability, $tuttoOk));
+            $this->tableVulnerabilities = array_merge($this->tableVulnerabilities,
+                $sensiolab->checkResponse($key, $vulnerability, $tuttoOk));
         }
 
         return $tuttoOk;
