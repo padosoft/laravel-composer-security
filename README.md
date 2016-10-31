@@ -163,7 +163,8 @@ If you discover any security related issues, please email  instead of using the 
 
 # API Documentation
 
-Please see API documentation at http://padosoft.github.io/laravel-composer-security
+Please see API documentation at [http://padosoft.github.io/laravel-composer-security](padosoft.github.io/laravel-composer-security)
+- [master](http://padosoft.github.io/laravel-composer-security/build/master/)
 
 # Credits
 
