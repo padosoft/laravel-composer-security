@@ -1,0 +1,78 @@
+{
+    "name": "Padosoft\\LaravelComposerSecurity\\ComposerSecurityCheck",
+    "line": 10,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Padosoft\\LaravelComposerSecurity",
+    "file": "c:\\Users\\Alessandro\\Documents\\Public\\laravel-packages\\www\\laravel\\5.2.x\\packages\\Padosoft\\laravel-composer-security\/src\\ComposerSecurityCheck.php",
+    "relative_file": null,
+    "hash": "8a81f4d901a67917478842290928f36b0ab54a81",
+    "parent": "Illuminate\\Console\\Command",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Command": "Illuminate\\Console\\Command",
+        "Client": "GuzzleHttp\\Client",
+        "Config": "Config"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 61,
+            "short_desc": "Create a new command instance.",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "objguzzle": {
+                    "name": "objguzzle",
+                    "line": 61,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\GuzzleHttp\\Client",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "GuzzleHttp\\Client",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "handle": {
+            "name": "handle",
+            "line": 72,
+            "short_desc": "Execute the console command.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,95 @@
+{
+    "name": "Padosoft\\Composer\\MailHelper",
+    "line": 14,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Padosoft\\Composer",
+    "file": "c:\\Users\\Alessandro\\Documents\\Public\\laravel-packages\\www\\laravel\\5.2.x\\packages\\Padosoft\\laravel-composer-security\/src\\MailHelper.php",
+    "relative_file": null,
+    "hash": "4b5356025e30681fb47c92b93102d5d50c896542",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Config": "Config",
+        "Validator": "Validator"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 23,
+            "short_desc": "MailHelper constructor.",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "objcommand": {
+                    "name": "objcommand",
+                    "line": 23,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Padosoft\\Composer\\Command",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Padosoft\\Composer\\Command",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "sendEmail": {
+            "name": "sendEmail",
+            "line": 32,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "tuttoOk": {
+                    "name": "tuttoOk",
+                    "line": 32,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "mail": {
+                    "name": "mail",
+                    "line": 32,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,142 @@
+{
+    "name": "Padosoft\\Composer\\SensiolabHelper",
+    "line": 14,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Padosoft\\Composer",
+    "file": "c:\\Users\\Alessandro\\Documents\\Public\\laravel-packages\\www\\laravel\\5.2.x\\packages\\Padosoft\\laravel-composer-security\/src\\SensiolabHelper.php",
+    "relative_file": null,
+    "hash": "3c780b7b4688bc991e8a4c70492a4d6deadcea9d",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Command": "Illuminate\\Console\\Command",
+        "Client": "GuzzleHttp\\Client"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 28,
+            "short_desc": "SensiolabHelper constructor.",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "objguzzle": {
+                    "name": "objguzzle",
+                    "line": 28,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\GuzzleHttp\\Client",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "GuzzleHttp\\Client",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "objcommand": {
+                    "name": "objcommand",
+                    "line": 28,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Illuminate\\Console\\Command",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Illuminate\\Console\\Command",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getSensiolabVulnerabilties": {
+            "name": "getSensiolabVulnerabilties",
+            "line": 43,
+            "short_desc": "Send Request to sensiolab and return array of sensiolab vulnerabilities.",
+            "long_desc": "Empty array if here is no vulnerabilities.",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "fileLock": {
+                    "name": "fileLock",
+                    "line": 43,
+                    "short_desc": "path to composer.lock file.",
+                    "long_desc": null,
+                    "hint": [],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "parseVulnerability": {
+            "name": "parseVulnerability",
+            "line": 102,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "name": {
+                    "name": "name",
+                    "line": 102,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "vulnerability": {
+                    "name": "vulnerability",
+                    "line": 102,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

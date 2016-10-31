@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>laravel-composer-security</title>
+    <link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+    <link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
+</head>
+<body>
+<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="index.html" class="navbar-brand">laravel-composer-security</a>
+        </div>
+    </div>
+</nav>
+<div id="content">
+    <h1>laravel-composer-security</h1>
+    <div class="panel panel-default" style="padding: 20px;">
+    <h1>LARAVEL COMPOSER SECURITY COMMAND</h1>
+<p><a href="https://packagist.org/packages/padosoft/laravel-composer-security"><img src="https://img.shields.io/packagist/v/padosoft/laravel-composer-security.svg?style=flat-square" alt="Latest Version on Packagist" /></a>
+<a href="LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License" /></a>
+<a href="https://travis-ci.org/padosoft/laravel-composer-security"><img src="https://img.shields.io/travis/padosoft/laravel-composer-security/master.svg?style=flat-square" alt="Build Status" /></a>
+<a href="https://scrutinizer-ci.com/g/padosoft/laravel-composer-security/code-structure"><img src="https://img.shields.io/scrutinizer/coverage/g/padosoft/laravel-composer-security.svg?style=flat-square" alt="Coverage Status" /></a>
+<a href="https://scrutinizer-ci.com/g/padosoft/laravel-composer-security"><img src="https://img.shields.io/scrutinizer/g/padosoft/laravel-composer-security.svg?style=flat-square" alt="Quality Score" /></a>
+<a href="https://packagist.org/packages/padosoft/laravel-composer-security"><img src="https://img.shields.io/packagist/dt/padosoft/laravel-composer-security.svg?style=flat-square" alt="Total Downloads" /></a>
+<a href="https://insight.sensiolabs.com/projects/80fa0430-55ff-4079-a34e-d189a9d21d5e"><img src="https://insight.sensiolabs.com/projects/80fa0430-55ff-4079-a34e-d189a9d21d5e/small.png" alt="SensioLabsInsight" /></a></p>
+<p>This is a Laravel 5.1/5.2/5.3 package that provides an artisan command for testing security vulnerabilties into your composer.lock files.
+Is ready and tested for php7.0 and php7.1 too.</p>
+<h1>Table of Contents</h1>
+<ul>
+<li>
+<a href="#laravel-composer-security-command">LARAVEL COMPOSER SECURITY COMMAND</a>
+</li>
+<li>
+<a href="#table-of-contents">Table of Contents</a>
+</li>
+<li>
+<a href="#prerequisites">PREREQUISITES</a>
+<ul>
+<li>
+<a href="#install">INSTALL</a>
+</li>
+<li>
+<a href="#usage">USAGE</a>
+<ul>
+<li>
+<a href="#example">EXAMPLE:</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#schedule-command">SCHEDULE COMMAND</a>
+</li>
+<li>
+<a href="#screenshoots">SCREENSHOOTS</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#testing">Testing</a>
+</li>
+<li>
+<a href="#contributing">Contributing</a>
+</li>
+<li>
+<a href="#security">Security</a>
+</li>
+<li>
+<a href="#api-documentation">API Documentation</a>
+</li>
+<li>
+<a href="#credits">Credits</a>
+</li>
+<li>
+<a href="#about-padosoft">About Padosoft</a>
+</li>
+<li>
+<a href="#license">License</a>
+</li>
+</ul>
+<h1>PREREQUISITES</h1>
+<p>LARAVEL 5.1+
+GUZZLE 6+</p>
+<h2>INSTALL</h2>
+<p>This package can be installed through Composer.</p>
+<pre><code class="language-bash">composer require padosoft/laravel-composer-security
+</code></pre>
+<p>You must install this service provider.</p>
+<pre><code class="language-php">// config/app.php
+'provider' =&gt; [
+    ...
+    Padosoft\LaravelComposerSecurity\ComposerSecurityCheckServiceProvider::class,
+    ...
+];
+</code></pre>
+<p>You don't need to register the command in app/Console/Kernel.php, because it provides by ComposerSecurtyCheckServiceProvider register() method.</p>
+<p>You can publish the config file of this package with this command:</p>
+<pre><code class="language-bash">php artisan vendor:publish --provider=&quot;Padosoft\LaravelComposerSecurity\ComposerSecurityCheckServiceProvider&quot;
+</code></pre>
+<p>The following config file will be published in <code>config/composer-security-check.php</code></p>
+<pre><code class="language-php">return array(
+    'mailSubjectSuccess' =&gt; env(
+        'SECURITY_CHECK_SUBJECT_SUCCESS',
+        '[composer-security-check]: Ok - no vulnerabilities detected.'
+    ),
+    'mailSubjetcAlarm' =&gt; env(
+        'SECURITY_CHECK_SUBJECT_ALARM',
+        '[composer-security-check]: Alarm - vulnerabilities detected.'
+    ),
+    'mailFrom' =&gt; env('SECURITY_CHECK_MESSAGE_FROM', 'info@example.com'),
+    'mailFromName' =&gt; env('SECURITY_CHECK_MESSAGE_FROM_NAME', 'Info Example'),
+    'mailViewName' =&gt; env('SECURITY_CHECK_MAIL_VIEW_NAME', 'composer-security-check::mail'),
+    'logFilePath' =&gt; env('SECURITY_CHECK_LOG_FILE_PATH', storage_path().'/composersecurityCheck.log')
+ );
+</code></pre>
+<p>In config folder you can copy from .env.example the settings for yours .env file used in composer-security-check.php.
+If you use mathiasgrimm/laravel-env-validator in config folder you'll find and example for validate the env settings.</p>
+<h2>USAGE</h2>
+<p>When the installation is done you can easily run command to print help:</p>
+<pre><code class="language-bash">php artisan composer-security:check
+</code></pre>
+<p>The <code>composer-security:check</code> command looks for every composer.lock file in the given path
+and foreach composer.lock check for security issues in the project dependencies:
+<code>php composer-security:check</code></p>
+<p>If you omit path argument, command look into current folder.</p>
+<p>You can also pass the path as an argument:
+<code>php composer-security:check /path/to/my/repos</code></p>
+<p>You can use * in path argument as jolly character i.e. <code>/var/www/*/*/</code></p>
+<p>By default, the command displays the result in console, but you can also
+send an html email by using the <code>--mail</code>option:</p>
+<pre><code class="language-bash">php composer-security:check /path/to/my/repos --mail=mymail@mydomain.me
+</code></pre>
+<h3>EXAMPLE:</h3>
+<p>Here is a basic example to check composer.lock into these dir:</p>
+<pre><code class="language-bash">php artisan composer-security:check &quot;/dir/to/check/*/*/&quot;
+</code></pre>
+<p>Here is an example to send output report to mail:</p>
+<pre><code class="language-bash">php artisan composer-security:check &quot;/dir/to/check/*/*/&quot; --mail=mymail@mydomain
+</code></pre>
+<p>Here is an example to ignore two composer.lock vulnerabilities into two dir (if command found any vulnerabilities into these dir, write it into output but the email subject isn't set to ALERT):</p>
+<pre><code class="language-bash">php artisan composer-security:check &quot;/dir/to/check/*/*/&quot; --mail=mymail@mydomain --whitelist=&quot;/dir/to/put/in/witelist,/another/dir/to/put/in/witelist&quot;
+</code></pre>
+<h2>SCHEDULE COMMAND</h2>
+<p>You can schedule a daily (or weekly etc..) report easly, by adding this line into <code>schedule</code> method in <code>app/Console/Kernel.php</code> :</p>
+<pre><code class="language-php">// app/console/Kernel.php
+
+protected function schedule(Schedule $schedule)
+{
+    ...
+	$schedule-&gt;command('composer-security:check &quot;/dir/to/check/&quot; --mail=mymail@mydomain')
+            -&gt;daily()
+            -&gt;withoutOverlapping()
+            -&gt;sendOutputTo(Config::get('composer-security-check.logFilePath'));
+}
+</code></pre>
+<h2>SCREENSHOOTS</h2>
+<p>OUTPUT CONSOLE:
+<img src="https://raw.githubusercontent.com/padosoft/laravel-composer-security/master/resources/img/console-output.png" alt="screenshoot" /></p>
+<p>EMAIL VIEW WITH ALERT:
+<img src="https://raw.githubusercontent.com/padosoft/laravel-composer-security/master/resources/img/alert-vulnerability.png" alt="screenshoot" /></p>
+<p>EMAIL VIEW WITH VULNERABILITY WITELISTED:
+<img src="https://raw.githubusercontent.com/padosoft/laravel-composer-security/master/resources/img/warning-vulerability-witelisted.png" alt="screenshoot" /></p>
+<h1>Testing</h1>
+<pre><code class="language-bash">$ composer test
+</code></pre>
+<h1>Contributing</h1>
+<p>Please see <a href="CONTRIBUTING.md">CONTRIBUTING</a> and <a href="CONDUCT.md">CONDUCT</a> for details.</p>
+<h1>Security</h1>
+<p>If you discover any security related issues, please email  instead of using the issue tracker.</p>
+<h1>API Documentation</h1>
+<p>Please see API documentation at <a href="padosoft.github.io/laravel-composer-security">http://padosoft.github.io/laravel-composer-security</a></p>
+<ul>
+<li>
+<a href="http://padosoft.github.io/laravel-composer-security/build/master/">master</a>
+</li>
+</ul>
+<h1>Credits</h1>
+<ul>
+<li>
+<a href="https://github.com/lopadova">Lorenzo Padovani</a>
+</li>
+<li>
+<a href="https://github.com/thephpleague/skeleton/contributors">All contributors</a>
+</li>
+</ul>
+<h1>About Padosoft</h1>
+<p>Padosoft is a software house based in Florence, Italy. Specialized in E-commerce and web sites.</p>
+<h1>License</h1>
+<p>The MIT License (MIT). Please see <a href="LICENSE.md">License File</a> for more information.</p>
+
+    </div>
+    <div id="footer">
+        laravel-composer-security API documentation
+    </div>
+</div>
+<script src="resources/combined.js?0ad74f5f397c39d6cd87c919ae2088ef413c07df"></script>
+</body>
+</html>

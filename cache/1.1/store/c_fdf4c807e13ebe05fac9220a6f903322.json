@@ -1,0 +1,23 @@
+{
+    "name": "Padosoft\\Composer\\MailHelperTest",
+    "line": 12,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Padosoft\\Composer",
+    "file": "c:\\Users\\Alessandro\\Documents\\Public\\laravel-packages\\www\\laravel\\5.2.x\\packages\\Padosoft\\laravel-composer-security\/src\\MailHelperTest.php",
+    "relative_file": null,
+    "hash": "cbe206ce8c602b62c96b97717d783eeee6f9a1fb",
+    "parent": "PHPUnit_Framework_TestCase",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}
