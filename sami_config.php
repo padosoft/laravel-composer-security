@@ -25,6 +25,6 @@ return new Sami($iterator,array(
     'versions'             => $versions,
     'build_dir'            => 'Y:/Public/laravel-packages/www/doc/padosoft/laravel-composer-security/build/%version%',
     'cache_dir'            => 'Y:/Public/laravel-packages/www/doc/padosoft/laravel-composer-security/cache/%version%',
-    'default_opened_level' => 2,
+    'default_opened_level' => 1,
 ));
 
