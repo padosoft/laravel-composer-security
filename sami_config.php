@@ -32,8 +32,8 @@ $sami= new Sami($iterator,array(
  * Include this section if you want sami to document
  * private and protected functions/properties
  */
-$sami['filter'] = function () {
+$sami['filter'] = $sami->share(function () {
     return new TrueFilter();
-};
+});
 
 return $sami;
