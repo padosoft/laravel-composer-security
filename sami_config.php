@@ -1,7 +1,7 @@
 <?php
 
 use Sami\Sami;
-use Sami\RemoteRepository\GitHubRemoteRepository;
+use Sami\Parser\Filter\TrueFilter;
 use Sami\Version\GitVersionCollection;
 use Symfony\Component\Finder\Finder;
 
@@ -19,7 +19,7 @@ $versions = GitVersionCollection::create($dir)
     ->add('master','master')
 ;
 
-return new Sami($iterator,array(
+$sami= new Sami($iterator,array(
     'theme'                => 'default',
     'title'                => 'Laravel Composer Security API',
     'versions'             => $versions,
@@ -28,3 +28,12 @@ return new Sami($iterator,array(
     'default_opened_level' => 1,
 ));
 
+/**
+ * Include this section if you want sami to document
+ * private and protected functions/properties
+ */
+$sami['filter'] = function () {
+    return new TrueFilter();
+};
+
+return $sami;
